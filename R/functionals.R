@@ -4,6 +4,10 @@ vmap <- function(xs, f) { lapply(xs, function(x) { f(unlist(x)) }) }
 
 nmap <- function(xs, f) { setNames(xs, lapply(names(xs), f)) }
 
+reduce <- function(xs, f, init) { Reduce(f, xs, init) }
+
+reduce1 <- function(xs, f) { reduce(xs, f, 1) }
+
 filter <- valfilter <- function(xs, f) { UseMethod("filter") }
 
 filter.default <- function(xs, f) { Filter(f, xs) }
@@ -41,6 +45,37 @@ filtermap <- function(xs, f) { xs[vmap(xs, f)] }
 reducemap <- function(xs, f) { map(xs, curry(reduce, f = f)) }
 
 `%_/>%` <- function(lhs, rhs) { lhs %>% reducemap(rhs) }
+
+flip <- function(f) { function(...) { do.call(f, rev(list(...))) } }
+# subtract(3, 5)
+# -2
+# flip(subtract)(3, 5)
+# 2
+
+accumulate <- function(xs, f) {
+  outs <- list(head(xs, 1))
+  f2 <- function(...) {
+    out <- f(...)
+    outs <<- append(outs, out)
+    out
+  }
+  reduce(xs, f2)
+  outs
+}
+# accumulate(seq(5), sum)
+# # cumsum <- curry(accumulate, f = sum)
+
+self_map <- function(xs, f) { f(xs, stretch(xs, length(xs))) }
+
+filterassign <- function(data, filter, value) {
+  data[filter(data)] <- value 
+}
+
+`%:<>%` <- function(lhs, rhs) {
+  filterassign(lhs, rhs[[1]], rhs[[2]])
+}
+
+# p %:<>% list(is.infinite, NA)
 
 # l <- list(Alice = list(20, 15, 30), Bob = list(10, 35))
 

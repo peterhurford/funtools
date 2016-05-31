@@ -164,3 +164,54 @@ Funtools also contains custom matchers: `is_even`, `is_odd`, `is_upper`, and `is
 `%==%` is an infix operator for `identical`.
 
 `isFALSE` compliments `isTRUE`.  `is_false` and `is_true` also work.
+
+
+
+## Examples
+
+**Euler 1**
+
+```R
+library(magrittr)
+library(funtools)
+1000 %>% dec %>% seq %/>% curry(div, y = c(3, 5)) %_/>% or %\>% which %_>% `+`
+```
+
+**Euler 2**
+
+```R
+library(inflist)
+fib <- infseq({result <- 0; b <- 1; function() { c(result, b) %<-% c(b, result + b) }})
+fib %>% take_while(curry(`<=`, e2 = 4000000)) %:>% is_even %_>% `+`
+```
+
+**Euler 3**
+
+```R
+roots <- . %>% sqrt %>% floor %>% seq(2, .)
+isPrime <- function(n) { n %>% dec %>% roots %:>% curry(div, x = n) %>% null }
+largest_prime_factor <- function(n) { roots(n-1) %:>% (curry(div, x = n) %&.% isPrime) %\>% max }
+largest_prime_factor(600851475143)
+
+**Euler 4**
+
+```R
+is_palindrome <- . %>% as.character %>% lsplit %>% { rev(.) == . } %>% all
+self_map(seq(100, 999), `*`) %>% unique %:>% is_palindrome %>% max
+```
+
+**Reinventing `which`**
+
+```R
+library(funtools)
+library(dplyr)
+which_ <- function(bools) {
+  bools %>% lzip(seq_along(.), .) %:/>% nth(2) %/>% first
+}
+
+> which(is_even(seq(10, 20)))
+[1]  1  3  5  7  9 11
+> which_(is_even(seq(10, 20)))
+#TODO: FIX
+Error in xs[vmap(xs, f)] : invalid subscript type 'list'
+```

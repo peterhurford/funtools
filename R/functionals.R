@@ -1,19 +1,29 @@
+#' @export
 map <- function(xs, f, ...) { lapply(xs, f, ...) }
 
+#' @export
 vmap <- function(xs, f) { lapply(xs, function(x) { f(unlist(x)) }) }
 
+#' @export
 nmap <- function(xs, f) { setNames(xs, lapply(names(xs), f)) }
 
+#' @export
 reduce <- function(xs, f, init) { Reduce(f, xs, init) }
 
+#' @export
 reduce1 <- function(xs, f) { reduce(xs, f, 1) }
 
+#' @export
 filter <- valfilter <- function(xs, f) { UseMethod("filter") }
 
+#' @export
 filter.default <- function(xs, f) { Filter(f, xs) }
 
+#' @export
 nfilter <- function(xs, f) { l2[Filter(f, names(xs))] }
 
+#' @import magrittr
+#' @export
 `%/>%` <- function(lhs, rhs) {
   if (is.list(rhs)) {
     do.call(map, c(list(lhs), rhs))
@@ -22,8 +32,10 @@ nfilter <- function(xs, f) { l2[Filter(f, names(xs))] }
   }
 }
 
+#' @export
 `%:>%` <- function(lhs, rhs) { lhs %>% filter(rhs) }
 
+#' @export
 `%_>%` <- function(lhs, rhs) {
   if (is.list(rhs) && length(rhs) == 2) {
     lhs %>% reduce(rhs[[1]], rhs[[2]])
@@ -32,26 +44,36 @@ nfilter <- function(xs, f) { l2[Filter(f, names(xs))] }
   }
 }
 
+#' @export
 `%\\>%` <- function(lhs, rhs) { lhs %>% vmap(rhs) }
 
-flatmap <- . %>% map %>% flatten
+#' @export
+#' @import magrittr
+flatmap <- function(xs, f) { map(xhs, f) %>% flatten }
 
+#' @export
 `%f/>%` <- function(lhs, rhs) { lhs %>% flatmap(rhs) }
 
+#' @export
 filtermap <- function(xs, f) { xs[vmap(xs, f)] }
 
+#' @export
 `%:/>%` <- function(lhs, rhs) { lhs %>% filtermap(rhs) }
 
+#' @export
 reducemap <- function(xs, f) { map(xs, curry(reduce, f = f)) }
 
+#' @export
 `%_/>%` <- function(lhs, rhs) { lhs %>% reducemap(rhs) }
 
+#' @export
 flip <- function(f) { function(...) { do.call(f, rev(list(...))) } }
 # subtract(3, 5)
 # -2
 # flip(subtract)(3, 5)
 # 2
 
+#' @export
 accumulate <- function(xs, f) {
   outs <- list(head(xs, 1))
   f2 <- function(...) {
@@ -65,12 +87,15 @@ accumulate <- function(xs, f) {
 # accumulate(seq(5), sum)
 # # cumsum <- curry(accumulate, f = sum)
 
+#' @export
 self_map <- function(xs, f) { f(xs, stretch(xs, length(xs))) }
 
+#' @export
 filterassign <- function(data, filter, value) {
   data[filter(data)] <- value 
 }
 
+#' @export
 `%:<>%` <- function(lhs, rhs) {
   filterassign(lhs, rhs[[1]], rhs[[2]])
 }

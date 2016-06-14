@@ -77,22 +77,14 @@ There's also `vmap` (or `%\>%`) which turns the list result into a vector before
 ```
 
 
-#### Currying
+#### Function Shorthands
 
-You can create a partially evaluated function using `curry`:
+You can create a shorthand for defining a function using `fn`:
 
 ```R
-subtract <- function(a, b) a - b
-subtract3 <- curry(subtract, 3)
-subtract3(6)
-# 3
+add <- function(x, y) { x + y }
+add <- fn(x, y, x + y)
 ```
-
-`curry(subtract, 3)` is equivalent to `function(x) subtract(x, 3)`.
-
-You can pass named arguments to `curry` to replace arbitrary parts of the function.
-
-`curry(subtract, a = 3)` will make `function(x) subtract(3, x)`.
 
 
 #### Zip
@@ -174,29 +166,30 @@ Funtools also contains custom matchers: `is_even`, `is_odd`, `is_upper`, and `is
 ```R
 library(magrittr)
 library(funtools)
-1000 %>% dec %>% seq %/>% curry(div, y = c(3, 5)) %_/>% or %\>% which %_>% `+`
+1000 %>% dec %>% seq %/>% fn(x, div(x, c(3, 5))) %_/>% or %\>% which %_>% `+`
 ```
 
 **Euler 2**
 
 ```R
 library(inflist)
+library(num)
 fib <- infseq({result <- 0; b <- 1; function() { c(result, b) %<-% c(b, result + b) }})
-fib %>% take_while(curry(`<=`, e2 = 4000000)) %:>% is_even %_>% `+`
+fib %>% take_while(fn(x, x <= num("4M"))) %:>% is_even %_>% `+`
 ```
 
 **Euler 3**
 
 ```R
 roots <- . %>% sqrt %>% floor %>% seq(2, .)
-isPrime <- function(n) { n %>% dec %>% roots %:>% curry(div, x = n) %>% null }
-largest_prime_factor <- function(n) { roots(n-1) %:>% (curry(div, x = n) %&.% isPrime) %\>% max }
+isPrime <- function(n) { n %>% dec %>% roots %:>% fn(x, div(x, n)) %>% null }
+largest_prime_factor <- function(n) { roots(n-1) %:>% (fn(x, div(x, n)) %&.% isPrime) %\>% max }
 largest_prime_factor(600851475143)
 
 **Euler 4**
 
 ```R
-is_palindrome <- . %>% as.character %>% lsplit %>% { rev(.) == . } %>% all
+is_palindrome <- . %>% as.character %>% lsplit %>% fn(x, rev(x) == x) %>% all
 self_map(seq(100, 999), `*`) %>% unique %:>% is_palindrome %>% max
 ```
 

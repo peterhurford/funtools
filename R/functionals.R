@@ -45,7 +45,7 @@ nfilter <- function(xs, f) { l2[Filter(f, names(xs))] }
 }
 
 #' @export
-`%\\>%` <- function(lhs, rhs) { lhs %>% vmap(rhs) }
+`%\\>%` <- function(lhs, rhs) { unlist(lhs) %>% rhs }
 
 #' @export
 #' @import magrittr
@@ -61,7 +61,7 @@ filtermap <- function(xs, f) { xs[vmap(xs, f)] }
 `%:/>%` <- function(lhs, rhs) { lhs %>% filtermap(rhs) }
 
 #' @export
-reducemap <- function(xs, f) { map(xs, curry(reduce, f = f)) }
+reducemap <- function(xs, f) { map(xs, fn(x, reduce(x, f))) }
 
 #' @export
 `%_/>%` <- function(lhs, rhs) { lhs %>% reducemap(rhs) }
@@ -85,7 +85,7 @@ accumulate <- function(xs, f) {
   outs
 }
 # accumulate(seq(5), sum)
-# # cumsum <- curry(accumulate, f = sum)
+# cumsum <- fn(x, accumulate(x, sum))
 
 #' @export
 self_map <- function(xs, f) { f(xs, stretch(xs, length(xs))) }

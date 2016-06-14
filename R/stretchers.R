@@ -1,3 +1,3 @@
 stretch <- function(xs, n) { rep(xs, each = n) }
-ldouble <- curry(stretch, n = 2)
-ltriple <- curry(stretch, n = 3)
+ldouble <- function(x) { stretch(x, n = 2) }
+ltriple <- function(x) { stretch(x, n = 3) }

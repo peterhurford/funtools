@@ -2,6 +2,9 @@
 map <- function(xs, f, ...) { lapply(xs, f, ...) }
 
 #' @export
+innermap <- function(xs, f, ...) { lapply(xs, function(sxs) { lapply(sxs, f, ...) }) }
+
+#' @export
 vmap <- function(xs, f) { lapply(xs, function(x) { f(unlist(x)) }) }
 
 #' @export
@@ -29,6 +32,16 @@ nfilter <- function(xs, f) { l2[Filter(f, names(xs))] }
     do.call(map, c(list(lhs), rhs))
   } else {
     lhs %>% map(rhs)
+  }
+}
+
+#' @import magrittr
+#' @export
+`%//>%` <- function(lhs, rhs) {
+  if (is.list(rhs)) {
+    do.call(innermap, c(list(lhs), rhs))
+  } else {
+    lhs %>% innermap(rhs)
   }
 }
 

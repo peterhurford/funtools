@@ -5,10 +5,10 @@ fn <- function(...) {
   body <- tail(args, 1)[[1]]
   formals <- head(args, -1)
   #TODO: formals with arguments require looking at names.
-  fn <- function() { }
+  inner_fn <- function() { }
   a <- replicate(length(formals), formals(function(x) {})[[1]])
   names(a) <- formals
-  formals(fn) <- a
-  body(fn) <- body
-  fn
+  formals(inner_fn) <- a
+  body(inner_fn) <- body
+  inner_fn
 }

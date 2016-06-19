@@ -68,10 +68,14 @@ flatmap <- function(xs, f) { map(xhs, f) %>% flatten }
 `%f/>%` <- function(lhs, rhs) { lhs %>% flatmap(rhs) }
 
 #' @export
-filtermap <- function(xs, f) { xs[vmap(xs, f)] }
+filtermap <- function(xs, filter_f, map_f) {
+  predicates <- which(unlist(map(xs, filter_f)))
+  xs[predicates] <- map(xs[predicates], map_f)
+  xs
+}
 
 #' @export
-`%:/>%` <- function(lhs, rhs) { lhs %>% filtermap(rhs) }
+`%:/>%` <- function(lhs, rhs) { filtermap(lhs, rhs[[1]], rhs[[2]]) }
 
 #' @export
 reducemap <- function(xs, f) { map(xs, fn(x, reduce(x, f))) }

@@ -25,6 +25,12 @@ filter.default <- function(xs, f) { Filter(f, xs) }
 #' @export
 nfilter <- function(xs, f) { l2[Filter(f, names(xs))] }
 
+#' @export
+find <- function(xs, f) { Find(f, xs) }
+
+#' @export
+position <- function(xs, f) { Position(f, xs) }
+
 #' @import magrittr
 #' @export
 `%/>%` <- function(lhs, rhs) {

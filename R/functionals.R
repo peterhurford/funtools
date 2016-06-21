@@ -104,19 +104,6 @@ accumulate <- function(xs, f) {
 # accumulate(seq(5), sum)
 # cumsum <- fn(x, accumulate(x, sum))
 
-#' @export
-self_map <- function(xs, f) { f(xs, stretch(xs, length(xs))) }
-
-#' @export
-filterassign <- function(data, filter, value) {
-  data[filter(data)] <- value 
-}
-
-#' @export
-`%:<>%` <- function(lhs, rhs) {
-  filterassign(lhs, rhs[[1]], rhs[[2]])
-}
-
 # p %:<>% list(is.infinite, NA)
 
 # l <- list(Alice = list(20, 15, 30), Bob = list(10, 35))

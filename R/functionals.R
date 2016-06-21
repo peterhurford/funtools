@@ -68,7 +68,7 @@ position <- function(xs, f) { Position(f, xs) }
 
 #' @export
 #' @import magrittr
-flatmap <- function(xs, f) { map(xhs, f) %>% flatten }
+flatmap <- function(xs, f) { map(xs, f) %>% flatten }
 
 #' @export
 `%f/>%` <- function(lhs, rhs) { lhs %>% flatmap(rhs) }

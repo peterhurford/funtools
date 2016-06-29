@@ -9,3 +9,7 @@ interleave <- function(xs, ys) { flatten(zip(xs, ys)) }
 interpose <- function(xs, item) {
   interleave(xs, rep(item, length(xs)))
 }
+
+`%+>%` <- lzip
+
+`%+/>%` <- function(xs, f) { lzip(xs, f(xs)) }

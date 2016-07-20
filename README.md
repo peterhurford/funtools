@@ -39,7 +39,9 @@ seq(10) %>% map(inc) %>% reduce(sum)
 We also support infix operators:
 
 `%/>%` is `map`
+
 `%:>%` is `filter`
+
 `%_>%` is `reduce`
 
 thus making the chain even shorter...
@@ -59,8 +61,6 @@ There's also `vmap` (or `%\>%`) which turns the list result into a vector before
 `reducemap` (or `%_/>%`) will `map` a `reduce` function, which is good for reducing a list of lists.
 
 `find` is the compliment to `Find`.
-
-`null(xs)` returns `TRUE` if `xs` is empty. `null(xs, f)` returns `TRUE` if `find` fails to find with `f`.
 
 
 #### Function/Lambda Shorthand
@@ -176,12 +176,14 @@ chunk(seq(10), 3)
 
 or partition a list into groups based on a particular function:
 
+```R
 partition(seq(10), is_even)
 # [[1]]
 # [1]  2  4  6  8 10
 
 # [[2]]
 # [1] 1 3 5 7 9
+```
 
 
 #### Assignment Operators
@@ -250,6 +252,8 @@ Funtools contains custom matchers: `is_even`, `is_odd`, `is_upper`, and `is_lowe
 
 `grepv` returns the values for the pattern within a string (instead of their positions).
 
+`null(xs)` returns `TRUE` if `xs` is empty. `null(xs, f)` returns `TRUE` if `find` fails to find with `f`.
+
 
 ## Examples
 
@@ -278,6 +282,7 @@ roots <- . %>% sqrt %>% floor %>% seq(2, .)
 isPrime <- function(n) { n %>% dec %>% roots %:>% fn(x, div(x, n)) %>% null }
 largest_prime_factor <- function(n) { roots(n-1) %:>% (fn(x, div(x, n)) %&.% isPrime) %\>% max }
 largest_prime_factor(600851475143)
+```
 
 **Euler #4**
 

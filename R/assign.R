@@ -9,8 +9,8 @@
 }
 
 #' In-place subtraction.
-#' @param x numeric. Minuend.
-#' @param y numeric. Subtrahend.
+#' @param x numeric. The minuend.
+#' @param y numeric. The subtrahend.
 #' @export
 `%-=%` <- function(x, y) {
   result <- x - y
@@ -19,8 +19,8 @@
 }
 
 #' In-place division.
-#' @param x numeric. dividend.
-#' @param y numeric. divisor.
+#' @param x numeric. The dividend.
+#' @param y numeric. The divisor.
 #' @export
 `%/=%` <- function(x, y) {
   result <- x / y
@@ -29,8 +29,8 @@
 }
 
 #' In-place multiplication
-#' @param x numeric. multiplier.
-#' @param y numeric. multiplicand.
+#' @param x numeric. The multiplier.
+#' @param y numeric. The multiplicand.
 #' @export
 `%*=%` <- function(x, y) {
   result <- x * y
@@ -40,9 +40,9 @@
 
 #' In-place assignment, allowing for multiple values.
 #' @param vars character. The variable names to assign to. Can be a single string or list of strings.
-#' @param values object. The values to assign. Can be a single object or a list of objects.
+#' @param value object. The values to assign. Can be a single object or a list of objects.
 #' @export
-`%<-%` <- function(vars, value) {
+`%a-%` <- function(vars, value) {
   vars <- lapply(substitute(vars), deparse)[-1]
   for (i in seq_along(vars)) {
     assign(vars[[i]], value[[i]], envir = parent.frame(3))

@@ -1,12 +1,14 @@
 #' Iterate a function over a list.
 #' @param xs list. The list to iterate over.
 #' @param f function. The function to apply.
+#' @param ... list. Additional optional arguments to pass to lapply.
 #' @export
 map <- function(xs, f, ...) { lapply(xs, f, ...) }
 
 #' Iterate a function over each sublist in a list of lists.
 #' @param xs list. The list-of-lists to iterate over.
 #' @param f function. The function to apply.
+#' @param ... list. Additional optional arguments to pass to lapply.
 #' @export
 innermap <- function(xs, f, ...) { lapply(xs, function(sxs) { lapply(sxs, f, ...) }) }
 
@@ -57,7 +59,9 @@ find <- function(xs, f) { Find(f, xs) }
 #' @export
 position <- function(xs, f) { Position(f, xs) }
 
-#' @rdname map
+#' Infix operator for map.
+#' @param lhs list. The list to map over.
+#' @param rhs function. The mapping function
 #' @import magrittr
 #' @export
 `%/>%` <- function(lhs, rhs) {
@@ -68,7 +72,9 @@ position <- function(xs, f) { Position(f, xs) }
   }
 }
 
-#' @rdname innermap
+#' Infix operator for innermap.
+#' @param lhs list. The list of lists top map.
+#' @param rhs function. The function to map with.
 #' @import magrittr
 #' @export
 `%//>%` <- function(lhs, rhs) {
@@ -79,11 +85,16 @@ position <- function(xs, f) { Position(f, xs) }
   }
 }
 
-#' @rdname filter
+#' Infix operator for filter.
+#' @param lhs list. The list to filter.
+#' @param rhs function. The function to filter with.
+#' @import magrittr
 #' @export
 `%:>%` <- function(lhs, rhs) { lhs %>% filter(rhs) }
 
-#' @rdname reduce
+#' Infix operator for reduce.
+#' @param lhs list. The list to rduce.
+#' @param rhs function. The reducing function.
 #' @export
 `%_>%` <- function(lhs, rhs) {
   if (is.list(rhs) && length(rhs) == 2) {
@@ -97,7 +108,7 @@ position <- function(xs, f) { Position(f, xs) }
 #' @param lhs list. The left-hand side list to unlist and apply.
 #' @param rhs function. The right-hand side vectorized function to apply to the unlisted vector. 
 #' @export
-`%\\>%` <- function(lhs, rhs) { unlist(lhs) %>% rhs }
+`%v>%` <- function(lhs, rhs) { unlist(lhs) %>% rhs }
 
 #' Apply a map and then flatten the result.
 #' @param xs list. The list to map over.
@@ -106,7 +117,9 @@ position <- function(xs, f) { Position(f, xs) }
 #' @export
 flatmap <- function(xs, f) { map(xs, f) %>% flatten }
 
-#' @rdname flatmap
+#' Infix operator for flatmap.
+#' @param lhs list. The list to map over.
+#' @param rhs function. The function to map with.
 #' @import magrittr
 #' @export
 `%f/>%` <- function(lhs, rhs) { lhs %>% flatmap(rhs) }
@@ -122,7 +135,9 @@ filtermap <- function(xs, filter_f, map_f) {
   xs
 }
 
-#' @rdname filtermap
+#' Infix operator for filtermap
+#' @param lhs list. The list to iterate over.
+#' @param rhs list. A length-2 list of functions with teh first element being the filtering function and the second element being the mapping function.
 #' @export
 `%:/>%` <- function(lhs, rhs) { filtermap(lhs, rhs[[1]], rhs[[2]]) }
 
@@ -133,6 +148,8 @@ filtermap <- function(xs, filter_f, map_f) {
 #' @export
 reducemap <- function(xs, f) { map(xs, function(x) { reduce(x, f) }) }
 
-#' @rdname reducemap
+#' Infix operator for reducemap.
+#' @param lhs list. The list of lists to reduce.
+#' @param rhs function. The function to reduce with.
 #' @export
 `%_/>%` <- function(lhs, rhs) { lhs %>% reducemap(rhs) }

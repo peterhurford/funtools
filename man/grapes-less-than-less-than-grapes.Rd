@@ -9,7 +9,7 @@ xs \%<<\% y
 \arguments{
 \item{xs}{list. The list to append to.}
 
-\item{x}{object. The object to append to the list.}
+\item{y}{object. The object to append to the list.}
 }
 \description{
 Infix operator for in-place appending to list.

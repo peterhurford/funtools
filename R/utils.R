@@ -35,7 +35,7 @@ is_false <- isFALSE <- function(x) { identical(x, FALSE) }
 #' @param x object. The object to compare.
 #' @param y object. The other object to compare.
 #' @export
-`%==%` <- function(x, y) { identical(x, y) }
+`%===%` <- function(x, y) { identical(x, y) }
 
 
 #' Symmetric difference

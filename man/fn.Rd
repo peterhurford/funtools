@@ -13,7 +13,7 @@ fn(...)
 A shorthand for writing out R functions.
 }
 \examples{
-add <- function(x, y, x + y)
+add <- fn(x, y, x + y)
 add(2, 3)
 }
 

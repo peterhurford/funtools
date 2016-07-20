@@ -4,12 +4,14 @@
 \alias{merge.list}
 \title{Merge two lists together.}
 \usage{
-\method{merge}{list}(xs, ys)
+\method{merge}{list}(x, y, ...)
 }
 \arguments{
-\item{xs}{list. A list to merge.}
+\item{x}{list. A list to merge.}
 
-\item{ys}{list. A list to merge.}
+\item{y}{list. A list to merge.}
+
+\item{...}{list. Additional arguments that are ignored.}
 }
 \description{
 Merge two lists together.

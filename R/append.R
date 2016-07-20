@@ -6,7 +6,7 @@
 
 #' Infix operator for in-place appending to list.
 #' @param xs list. The list to append to.
-#' @param x object. The object to append to the list.
+#' @param y object. The object to append to the list.
 #' @export
 `%<<%` <- function(xs, y) {
   result <- append(xs, y)

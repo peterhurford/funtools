@@ -7,9 +7,9 @@
 x \%*=\% y
 }
 \arguments{
-\item{x}{numeric. multiplier.}
+\item{x}{numeric. The multiplier.}
 
-\item{y}{numeric. multiplicand.}
+\item{y}{numeric. The multiplicand.}
 }
 \description{
 In-place multiplication

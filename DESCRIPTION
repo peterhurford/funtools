@@ -1,11 +1,11 @@
 Package: funtools
-Title: Make R functions more fun.
+Title: Make R functions more fun
 Version: 0.0.0.9000
 Authors@R: person("Peter", "Hurford", email = "peter@peterhurford.com", role = c("aut", "cre"))
 Description: Provide numerous extensions to R's functional programming.
 Depends:
     R (>= 3.2.3)
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports:

@@ -50,7 +50,7 @@ thus making the chain even shorter...
 seq(10) %/>% inc %_>% sum
 ```
 
-There's also `vmap` (or `%\>%`) which turns the list result into a vector before applying the function and `nmap`, which applys the map on the names of the list.
+There's also `vmap` (or `%v>%`) which turns the list result into a vector before applying the function and `nmap`, which applys the map on the names of the list.
 
 `nfilter` will apply the `filter` on the names.
 
@@ -123,7 +123,7 @@ wsplit("hello how are you")
 
 Another, separate notion of compose is the SQL definition for handling NULL values.
 
-`a %|% b` will return `b` if `a` is `NULL`, `NA`, or length 0 and will return `a` otherwise.
+`a %or% b` will return `b` if `a` is `NULL`, `NA`, or length 0 and will return `a` otherwise.
 
 ```R
 beta_value <- options$beta_value %|% 0  # Assign beta to 0 unless already defined in options.
@@ -206,10 +206,10 @@ a
 
 #### Multiple assigning
 
-`%<-%` supports assigning multiple values at once:
+`%a-%` supports assigning multiple values at once:
 
 ```R
-c(a, b, c) %<-% seq(3)
+c(a, b, c) %a-% seq(3)
 a
 [1] 1
 b
@@ -221,7 +221,7 @@ c
 It can also be used to swap values:
 
 ```R
-c(a, b) %<-% c(b, a)
+c(a, b) %a-% c(b, a)
 a
 [1] 2
 b
@@ -242,7 +242,7 @@ Thus `l <- append(l, 2)` can now be `l <- l %<% 2` or `l %<<% 2`.
 
 Funtools contains custom matchers: `is_even`, `is_odd`, `is_upper`, and `is_lower`.
 
-`%==%` is an infix operator for `identical`.
+`%===%` is an infix operator for `identical`.
 
 `isFALSE` compliments `isTRUE`.  `is_false` and `is_true` also work.
 
@@ -264,7 +264,7 @@ Funtools contains custom matchers: `is_even`, `is_odd`, `is_upper`, and `is_lowe
 ```R
 library(magrittr)
 library(funtools)
-1000 %>% dec %>% seq %/>% fn(x, div(x, c(3, 5))) %_/>% or %\>% which %_>% `+`
+1000 %>% dec %>% seq %/>% fn(x, div(x, c(3, 5))) %_/>% or %v>% which %_>% `+`
 ```
 
 **Euler #2**
@@ -272,7 +272,7 @@ library(funtools)
 ```R
 library(inflist)
 library(num)
-fib <- infseq({result <- 0; b <- 1; function() { c(result, b) %<-% c(b, result + b) }})
+fib <- infseq({result <- 0; b <- 1; function() { c(result, b) %a-% c(b, result + b) }})
 fib %>% take_while(fn(x, x <= num("4M"))) %:>% is_even %_>% `+`
 ```
 
@@ -282,7 +282,7 @@ fib %>% take_while(fn(x, x <= num("4M"))) %:>% is_even %_>% `+`
 #TODO: Redo
 roots <- . %>% sqrt %>% floor %>% seq(2, .)
 isPrime <- function(n) { n %>% dec %>% roots %:>% fn(x, div(x, n)) %>% null }
-largest_prime_factor <- function(n) { roots(n-1) %:>% (fn(x, div(x, n)) %&.% isPrime) %\>% max }
+largest_prime_factor <- function(n) { roots(n-1) %:>% (fn(x, div(x, n)) %&.% isPrime) %v>% max }
 largest_prime_factor(600851475143)
 ```
 

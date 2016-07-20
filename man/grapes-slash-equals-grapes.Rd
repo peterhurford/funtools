@@ -7,9 +7,9 @@
 x \%/=\% y
 }
 \arguments{
-\item{x}{numeric. dividend.}
+\item{x}{numeric. The dividend.}
 
-\item{y}{numeric. divisor.}
+\item{y}{numeric. The divisor.}
 }
 \description{
 In-place division.

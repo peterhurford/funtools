@@ -1,3 +1,4 @@
+#' @export
 thread <- function(lst, fn) {
   out_list <- list(lst[[1]])
   for (i in seq(2, length(lst))) {
@@ -6,6 +7,7 @@ thread <- function(lst, fn) {
   out_list
 }
 
+#' @export
 thread2 <- function(lst, fn) {
   out_list <- list(lst[[1]])
   for (i in seq(2, length(lst))) {

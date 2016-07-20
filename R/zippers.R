@@ -1,15 +1,14 @@
+#' @export
 vzip <- zip <- function(xs, ys) { Map(c, xs, ys) }
 
+#' @export
 lzip <- function(xs, ys) { Map(list, xs, ys) }
 
+#' @export
 zip_with <- function(xs, ys, f) { Map(f, xs, ys) }
 
-interleave <- function(xs, ys) { flatten(zip(xs, ys)) }
-
-interpose <- function(xs, item) {
-  interleave(xs, rep(item, length(xs)))
-}
-
+#' @export
 `%+>%` <- lzip
 
+#' @export
 `%+/>%` <- function(xs, f) { lzip(xs, f(xs)) }

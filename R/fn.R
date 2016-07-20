@@ -1,3 +1,4 @@
+#' @eport
 fn <- function(...) {
   args <- eval(substitute(alist(...)))
   body <- tail(args, 1)[[1]]

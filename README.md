@@ -136,6 +136,8 @@ beta_value <- options$beta_value %|% 0  # Assign beta to 0 unless already define
 
 `zip_with` will let you combine two lists with an arbitrary function.
 
+`%+>%` is a shorthand for `lzip`.
+
 
 #### Threading
 
@@ -305,7 +307,7 @@ c(0, 1, 2, Inf, 3) %:/>% list(is.infinite, fn(x, NA))
 library(funtools)
 library(dplyr)
 which_ <- function(bools) {
-  bools %>% lzip(seq_along(.), .) %:/>% nth(2) %/>% first
+  bools %+/>% seq_along %:/>% first %/>% nth(2)
 }
 
 > which(is_even(seq(10, 20)))

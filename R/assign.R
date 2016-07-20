@@ -1,27 +1,32 @@
+#' @eport
 `%+=%` <- function(x, y) {
   result <- x + y
   assign(deparse(substitute(x)), result, envir = parent.frame(3))
   result
 }
 
+#' @eport
 `%-=%` <- function(x, y) {
   result <- x - y
   assign(deparse(substitute(x)), result, envir = parent.frame(3))
   result
 }
 
+#' @eport
 `%/=%` <- function(x, y) {
   result <- x / y
   assign(deparse(substitute(x)), result, envir = parent.frame(3))
   result
 }
 
+#' @eport
 `%*=%` <- function(x, y) {
   result <- x * y
   assign(deparse(substitute(x)), result, envir = parent.frame(3))
   result
 }
 
+#' @eport
 `%<-%` <- function(vars, vals) {
   vars <- lapply(substitute(vars), deparse)[-1]
   for (i in seq_along(vars)) {

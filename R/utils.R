@@ -15,13 +15,6 @@ is_false <- isFALSE <- function(x) { identical(x, FALSE) }
 `%==%` <- identical
 
 
-frequencies <- function(xs) {
-  xs %>% unlist %>% rle %>% {
-    setNames(.$lengths, .$values)
-  }
-}
-
-
 symdiff <- symmetric_difference <- function(xs, ys) {
   c(setdiff(xs, ys), setdiff(ys, xs))
 }
@@ -38,6 +31,5 @@ inc <- function(x) x + 1
 
 
 div <- function(x, y) x %% y == 0
-
 
 grepv <- function(str, pattern) { grep(pattern, str, value = TRUE) }

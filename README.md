@@ -63,21 +63,7 @@ There's also `vmap` (or `%\>%`) which turns the list result into a vector before
 `null(xs)` returns `TRUE` if `xs` is empty. `null(xs, f)` returns `TRUE` if `find` fails to find with `f`.
 
 
-#### Function composition
-
-`%>%` from magrittr already can be used to compose functions (e.g., `fn <- . %>% f %>% g`).
-
-`%&>%` (`fandcompose`) can be used to compose two functions using `&&` instead of function application.  `%|>%` (`forcompose`) composes two functions using `||`.
-
-```R
-23 %>% (is_even %&>% function(x) x > 20)
-[1] FALSE
-23 %>% (is_even %|>% function(x) x > 20)
-[1] TRUE
-```
-
-
-#### Function Shorthands
+#### Function/Lambda Shorthand
 
 You can create a shorthand for defining a function using `fn`:
 
@@ -87,6 +73,63 @@ add <- fn(x, y, x + y)
 ```
 
 
+#### Function composition
+
+`%>%` from magrittr already can be used to compose functions (e.g., `fn <- . %>% f %>% g`).
+
+`%&>%` (`fandcompose`) can be used to compose two functions using `&&` instead of function application.  `%|>%` (`forcompose`) composes two functions using `||`.
+
+```R
+23 %>% (is_even %&>% fn(x, x > 20))
+[1] FALSE
+23 %>% (is_even %|>% fn(x, x > 20))
+[1] TRUE
+```
+
+
+#### Flatten, Compact, Join
+
+`flatten` takes a list of arbitrary depth and flattens it into a list of depth-1.
+
+`compact` removes NA and NULL values from a list.
+
+`join` combines a list of strings into a single string.
+
+```R
+flatten(list(list(1, 2), list("a", "b")))
+# Produces list(1, 2, "a", "b")
+
+compact(list(1, 2, NA, 3, NULL, 4))
+# Produces list(1, 2, 3, 4)
+
+join(list("hello", "how", "are", "you"), join = " ")
+# Produces "hello how are you"
+```
+
+
+#### Split
+
+`lsplit` splits a string into a list with each letter. `wsplit` splits a string into a list with each word.
+
+```R
+lsplit("hello how are you")
+# [1] "h" "e" "l" "l" "o" " " "h" "o" "w" " " "a" "r" "e" " " "y" "o" "u"
+wsplit("hello how are you")
+# [1] "hello" "how"   "are"   "you"
+```
+
+
+#### NA Composition
+
+Another, separate notion of compose is the SQL definition for handling NULL values.
+
+`a %|% b` will return `b` if `a` is `NULL`, `NA`, or length 0 and will return `a` otherwise.
+
+```R
+beta_value <- options$beta_value %|% 0  # Assign beta to 0 unless already defined in options.
+````
+
+
 #### Zip
 
 `zip` combines two lists into vector tuples. `lzip` will combine two lists into list-tuples, where classes can be different.
@@ -94,9 +137,51 @@ add <- fn(x, y, x + y)
 `zip_with` will let you combine two lists with an arbitrary function.
 
 
+#### Threading
+
+Threading iterates over a list using both the current and the previous position in the list. `thread` uses the previous position in the input list whereas `thread2` uses the previous position in the *output* list.
+
+`thread_while` continues to add to a list until the function passed returns FALSE, after which it starts aggregating a new list.
+
+```R
+thread2(seq(10), `+`)
+# Produces the cumulative sums of the first 10 numbers
+#  [1]  1  3  6 10 15 21 28 36 45 55
+```
+
+
 #### Merge
 
 Funtools expands `merge` to work with lists.
+
+
+#### Chunk and Partition
+
+Separate an R list into groups of a certain size:
+
+```R
+chunk(seq(10), 3)
+# [[1]]
+# [1] 1 2 3
+
+# [[2]]
+# [1] 4 5 6
+
+# [[3]]
+# [1] 7 8 9
+
+# [[4]]
+# [1] 10
+````
+
+or partition a list into groups based on a particular function:
+
+partition(seq(10), is_even)
+# [[1]]
+# [1]  2  4  6  8 10
+
+# [[2]]
+# [1] 1 3 5 7 9
 
 
 #### Assignment Operators
@@ -151,12 +236,19 @@ Thus `l <- append(l, 2)` can now be `l <- l %<% 2` or `l %<<% 2`.
 
 #### Random utilities
 
-Funtools also contains custom matchers: `is_even`, `is_odd`, `is_upper`, and `is_lower`.
+Funtools contains custom matchers: `is_even`, `is_odd`, `is_upper`, and `is_lower`.
 
 `%==%` is an infix operator for `identical`.
 
 `isFALSE` compliments `isTRUE`.  `is_false` and `is_true` also work.
 
+`sort_keys` will sort a list based on the names of that list.
+
+`symdiff` implements symmetric difference.
+
+`named` returns `TRUE` for named lists. `unnamed` returns `TRUE` for unnamed lists.
+
+`grepv` returns the values for the pattern within a string (instead of their positions).
 
 
 ## Examples
@@ -181,6 +273,7 @@ fib %>% take_while(fn(x, x <= num("4M"))) %:>% is_even %_>% `+`
 **Euler #3**
 
 ```R
+#TODO: Redo
 roots <- . %>% sqrt %>% floor %>% seq(2, .)
 isPrime <- function(n) { n %>% dec %>% roots %:>% fn(x, div(x, n)) %>% null }
 largest_prime_factor <- function(n) { roots(n-1) %:>% (fn(x, div(x, n)) %&.% isPrime) %\>% max }
@@ -190,8 +283,16 @@ largest_prime_factor(600851475143)
 
 ```R
 is_palindrome <- . %>% as.character %>% lsplit %>% fn(x, rev(x) == x) %>% all
+#TODO: Add self_map
 self_map(seq(100, 999), `*`) %>% unique %:>% is_palindrome %>% max
 ```
+
+**Replace infinite values with NA**
+
+```R
+c(0, 1, 2, Inf, 3) %:/>% list(is.infinite, fn(x, NA))
+# c(0, 1, 2, NA, 3)
+````
 
 **Reinventing `which`**
 

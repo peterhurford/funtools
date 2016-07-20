@@ -2,6 +2,7 @@ fandcompose <- `%&>%` <- function(f1, f2) { function(...) { f1(...) && f2(...) }
 
 forcompose <- `%|>%` <- function(f1, f2) { function(...) { f1(...) || f2(...) }}
 
+
 `%|all%` <- `%|%` <- compose_all <- function(x, y) {
   if (is.null(x) || is.na(x) || length(x) == 0) { y } else { x }
 }

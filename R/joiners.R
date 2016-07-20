@@ -1,13 +1,12 @@
-flatten <- function(xs) { as.list(unlist(xs)) }
+#' @export
+flatten <- function(xs) { Reduce(append, xs, list()) }
 
+#' @export
 compact <- function(xs) {
-  filter(xs, function(x) !is.null(x) || !suppressWarnings(is.na(x)))
+  filter(xs, function(x) !is.null(x) && !suppressWarnings(is.na(x)))
 }
 
-collapse <- function(str, collapse = "") {
-  paste0(str, collapse = collapse)
-}
-
+#' @export
 join <- function(l, join = "") {
-  collapse(unlist(l), collapse = join)
+  paste0(unlist(l), collapse = join)
 }

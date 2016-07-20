@@ -1,5 +1,3 @@
-# fn(x, y, x + y) -> function(x, y) { x + y }
-# fn(x = 1, y, x + y) -> function(x = 1, y) { x + y }
 fn <- function(...) {
   args <- eval(substitute(alist(...)))
   body <- tail(args, 1)[[1]]

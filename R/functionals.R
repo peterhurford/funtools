@@ -23,7 +23,7 @@ filter <- valfilter <- function(xs, f) { UseMethod("filter") }
 filter.default <- function(xs, f) { Filter(f, xs) }
 
 #' @export
-nfilter <- function(xs, f) { l2[Filter(f, names(xs))] }
+nfilter <- function(xs, f) { xs[Filter(f, names(xs))] }
 
 #' @export
 find <- function(xs, f) { Find(f, xs) }

@@ -14,7 +14,7 @@ forcompose <- `%|>%` <- function(f1, f2) { function(...) { f1(...) || f2(...) }}
 `%|0%` <- compose_zero <- function(x, y) { if (length(x) == 0) { y } else { x } }
 
 #' @eport
-`%|null%` <- `%||%` <- compose_null <- function(x, y) { if(is.null(x)) { y } else { x } }
+`%|null%` <- `%||%` <- compose_null <- function(x, y) { if (is.null(x)) { y } else { x } }
 
 #' @eport
-`%|na%` <- `%|||%` <- compose_na <- function(x, y) { if(is.na(x)) { y } else { x } }
+`%|na%` <- `%|||%` <- compose_na <- function(x, y) { if (is.na(x)) { y } else { x } }

@@ -2,7 +2,7 @@
 thread <- function(lst, fn) {
   out_list <- list(lst[[1]])
   for (i in seq(2, length(lst))) {
-    out_list[[i]] <- fn(lst[[i-1]], lst[[i]])
+    out_list[[i]] <- fn(lst[[i - 1]], lst[[i]])
   }
   out_list
 }
@@ -11,7 +11,7 @@ thread <- function(lst, fn) {
 thread2 <- function(lst, fn) {
   out_list <- list(lst[[1]])
   for (i in seq(2, length(lst))) {
-    out_list[[i]] <- fn(out_list[[i-1]], lst[[i]])
+    out_list[[i]] <- fn(out_list[[i - 1]], lst[[i]])
   }
   out_list
 }

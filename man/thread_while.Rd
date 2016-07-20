@@ -4,10 +4,10 @@
 \alias{thread_while}
 \title{Continue appending to a list while the functional is true, then start appending to the next list until the input list is empty.}
 \usage{
-thread_while(lst, fn)
+thread_while(xs, fn)
 }
 \arguments{
-\item{lst}{list. The input list to thread.}
+\item{xs}{list. The input list to thread.}
 
 \item{fn}{function. The function to check.}
 }

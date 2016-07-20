@@ -161,7 +161,7 @@ Funtools also contains custom matchers: `is_even`, `is_odd`, `is_upper`, and `is
 
 ## Examples
 
-**Euler 1**
+**Euler #1**
 
 ```R
 library(magrittr)
@@ -169,7 +169,7 @@ library(funtools)
 1000 %>% dec %>% seq %/>% fn(x, div(x, c(3, 5))) %_/>% or %\>% which %_>% `+`
 ```
 
-**Euler 2**
+**Euler #2**
 
 ```R
 library(inflist)
@@ -178,7 +178,7 @@ fib <- infseq({result <- 0; b <- 1; function() { c(result, b) %<-% c(b, result +
 fib %>% take_while(fn(x, x <= num("4M"))) %:>% is_even %_>% `+`
 ```
 
-**Euler 3**
+**Euler #3**
 
 ```R
 roots <- . %>% sqrt %>% floor %>% seq(2, .)
@@ -186,7 +186,7 @@ isPrime <- function(n) { n %>% dec %>% roots %:>% fn(x, div(x, n)) %>% null }
 largest_prime_factor <- function(n) { roots(n-1) %:>% (fn(x, div(x, n)) %&.% isPrime) %\>% max }
 largest_prime_factor(600851475143)
 
-**Euler 4**
+**Euler #4**
 
 ```R
 is_palindrome <- . %>% as.character %>% lsplit %>% fn(x, rev(x) == x) %>% all
@@ -207,4 +207,18 @@ which_ <- function(bools) {
 > which_(is_even(seq(10, 20)))
 #TODO: FIX
 Error in xs[vmap(xs, f)] : invalid subscript type 'list'
+```
+
+** Formatting a string to have line wrapping **
+```R
+## Print out str so that each line is max 13 characters and no words are broken.
+str <- "Four score and seven years ago our fathers brought forth upon this continent a new nation conceived in liberty and dedicated to the proposition that all men are created equal"
+
+wsplit(str) %+/>% nchar %>%
+  thread2(fn(x, y, { list(y[[1]], (y[[2]] + x[[2]]) %% 13) })) %>%
+  thread(fn(x, y, { list(y[[1]], x[[2]] < y[[2]]) })) %>%
+  thread_while(fn(x, isTRUE(x[[2]]))) %//>%
+  fn(x, x[[1]]) %/>%
+  fn(x, collapse(x, " ")) %>%
+  join("\n") %>% cat
 ```

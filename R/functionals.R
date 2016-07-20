@@ -84,7 +84,7 @@ filtermap <- function(xs, filter_f, map_f) {
 `%:/>%` <- function(lhs, rhs) { filtermap(lhs, rhs[[1]], rhs[[2]]) }
 
 #' @export
-reducemap <- function(xs, f) { map(xs, fn(x, reduce(x, f))) }
+reducemap <- function(xs, f) { map(xs, function(x) { reduce(x, f) }) }
 
 #' @export
 `%_/>%` <- function(lhs, rhs) { lhs %>% reducemap(rhs) }

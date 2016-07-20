@@ -27,9 +27,9 @@
 }
 
 #' @eport
-`%<-%` <- function(vars, vals) {
+`%<-%` <- function(vars, value) {
   vars <- lapply(substitute(vars), deparse)[-1]
   for (i in seq_along(vars)) {
-    assign(vars[[i]], vals[[i]], envir = parent.frame(3))
+    assign(vars[[i]], value[[i]], envir = parent.frame(3))
   }
 }

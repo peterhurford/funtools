@@ -20,7 +20,7 @@ is_false <- isFALSE <- function(x) { identical(x, FALSE) }
 
 
 #' @export
-`%==%` <- identical
+`%==%` <- function(x, y) { identical(x, y) }
 
 
 #' @export

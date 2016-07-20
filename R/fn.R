@@ -1,4 +1,9 @@
-#' @eport
+#' A shorthand for writing out R functions.
+#' @param ... list. The last argument specifies the funciton body, the non-last arguments specify the formals.
+#' @examples
+#' add <- function(x, y, x + y)
+#' add(2, 3)
+#' @export
 fn <- function(...) {
   args <- eval(substitute(alist(...)))
   body <- tail(args, 1)[[1]]

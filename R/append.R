@@ -1,9 +1,15 @@
-#' @eport
-`%<%` <- append
+#' Infix operator for appending to a list.
+#' @param xs list. The list to append to.
+#' @param x object. The object to append to the list.
+#' @export
+`%<%` <- function(xs, x) { append(xs, x) }
 
-#' @eport
-`%<<%` <- function(x, y) {
-  result <- append(x, y)
-  assign(deparse(substitute(x)), result, envir = parent.frame(3))
+#' Infix operator for in-place appending to list.
+#' @param xs list. The list to append to.
+#' @param x object. The object to append to the list.
+#' @export
+`%<<%` <- function(xs, y) {
+  result <- append(xs, y)
+  assign(deparse(substitute(xs)), result, envir = parent.frame(3))
   result
 }

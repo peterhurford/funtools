@@ -3,7 +3,7 @@
 #' @param y list. A list to merge.
 #' @param ... list. Additional arguments that are ignored.
 #' @export
-merge.list <- lmerge <- function(x, y, ...) {
+merge.list <- function(x, y, ...) {
   if (unnamed(x)) { names(x) <- rep("", length(x)) }
   if (unnamed(y)) { names(y) <- rep("", length(y)) }
   unnamed_x <- x[names(x) == ""]
@@ -13,3 +13,7 @@ merge.list <- lmerge <- function(x, y, ...) {
   out <- sort_keys(c(named_x, named_y[setdiff(names(y), names(x))], unnamed_x, unnamed_y))
   if (all(names(out) == "")) { unname(out) } else { out }
 }
+
+#' @rdname merge.list
+#' @export
+lmerge <- merge.list

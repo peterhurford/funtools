@@ -43,7 +43,7 @@ is_false <- function(x) { identical(x, FALSE) }
 #' @param xs list. The first list to look at.
 #' @param ys list. The second element to look at.
 #' @export
-symdiff <- symmetric_difference <- function(xs, ys) {
+symdiff <- function(xs, ys) {
   union(setdiff(xs, ys), setdiff(ys, xs))
 }
 

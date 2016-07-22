@@ -2,9 +2,12 @@
 % Please edit documentation in R/zippers.R
 \name{vzip}
 \alias{vzip}
+\alias{zip}
 \title{Zip two lists together into tuple vectors.}
 \usage{
 vzip(xs, ys)
+
+zip(xs, ys)
 }
 \arguments{
 \item{xs}{list. One list to zip.}

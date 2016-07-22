@@ -2,7 +2,7 @@
 #' @param xs list. One list to zip.
 #' @param ys list. Antoher list to zip.
 #' @export
-vzip <- zip <- function(xs, ys) { Map(c, xs, ys) }
+vzip <- function(xs, ys) { Map(c, xs, ys) }
 
 #' Zip two lists together into a list of lists containing each element from both lists.
 #' @param xs list. One list to zip.
@@ -20,6 +20,10 @@ zip_with <- function(xs, ys, f) { Map(f, xs, ys) }
 #' @rdname lzip
 #' @export
 `%+>%` <- lzip
+
+#' @rdname vzip
+#' @export
+zip <- vzip
 
 #' @rdname zip_with
 #' @export

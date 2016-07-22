@@ -28,7 +28,7 @@ is_true <- function(x) { isTRUE(x) }
 #' Determine whether an object is FALSE.
 #' @param x object. The object to look at.
 #' @export
-is_false <- isFALSE <- function(x) { identical(x, FALSE) }
+is_false <- function(x) { identical(x, FALSE) }
 
 
 #' Determine whether two objects are identical.

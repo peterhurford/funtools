@@ -2,12 +2,12 @@ context("compose")
 
 test_that("fandcompose", {
   expect_equal(fandcompose(is_even, is_odd)(seq(10)), rep(FALSE, 10))
-  expect_equal((is_even %&>% is_odd)(seq(10)), rep(FALSE, 10))
+  expect_equal( (is_even %&>% is_odd)(seq(10)), rep(FALSE, 10))
 })
 
 test_that("forcompose", {
   expect_equal(forcompose(is_even, is_odd)(seq(10)), rep(TRUE, 10))
-  expect_equal((is_even %|>% is_odd)(seq(10)), rep(TRUE, 10))
+  expect_equal( (is_even %|>% is_odd)(seq(10)), rep(TRUE, 10))
 })
 
 test_that("%|%", {

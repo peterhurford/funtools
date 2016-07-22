@@ -13,4 +13,3 @@ merge.list <- lmerge <- function(x, y, ...) {
   out <- sort_keys(c(named_x, named_y[setdiff(names(y), names(x))], unnamed_x, unnamed_y))
   if (all(names(out) == "")) { unname(out) } else { out }
 }
-

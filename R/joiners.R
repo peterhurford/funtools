@@ -1,7 +1,12 @@
 #' Take a list of lists and return a list.
 #' @param xs list. The list to flatten.
 #' @export
-flatten <- function(xs) { Reduce(append, xs, list()) }
+flatten <- function(xs) {
+  while ("list" %in% sapply(xs, class) || any(sapply(xs, length) > 1)) {
+    xs <- Reduce(append, xs, list())
+  }
+  xs
+}
 
 #' Remove all NAs and NULLs from a list.
 #' @param xs list. The list to compact.

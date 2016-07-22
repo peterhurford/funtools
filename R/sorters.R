@@ -3,5 +3,7 @@
 #' @export
 sort_keys <- function(xs) {
   if (unnamed(xs)) { return(xs) }
-  xs[sort(names(xs))]
+  unnamed_xs <- xs[names(xs) == ""]
+  named_xs <- xs[names(xs) != ""]
+  c(named_xs[sort(names(named_xs))], unnamed_xs)
 }

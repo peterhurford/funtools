@@ -4,7 +4,7 @@
 #' @export
 `%+=%` <- function(x, y) {
   result <- x + y
-  assign(deparse(substitute(x)), result, envir = parent.frame(3))
+  assign(deparse(substitute(x)), result, envir = parent.frame(1))
   result
 }
 
@@ -14,7 +14,7 @@
 #' @export
 `%-=%` <- function(x, y) {
   result <- x - y
-  assign(deparse(substitute(x)), result, envir = parent.frame(3))
+  assign(deparse(substitute(x)), result, envir = parent.frame(1))
   result
 }
 
@@ -24,7 +24,7 @@
 #' @export
 `%/=%` <- function(x, y) {
   result <- x / y
-  assign(deparse(substitute(x)), result, envir = parent.frame(3))
+  assign(deparse(substitute(x)), result, envir = parent.frame(1))
   result
 }
 
@@ -34,17 +34,23 @@
 #' @export
 `%*=%` <- function(x, y) {
   result <- x * y
-  assign(deparse(substitute(x)), result, envir = parent.frame(3))
+  assign(deparse(substitute(x)), result, envir = parent.frame(1))
   result
 }
 
 #' In-place assignment, allowing for multiple values.
 #' @param vars character. The variable names to assign to. Can be a single string or list of strings.
-#' @param value object. The values to assign. Can be a single object or a list of objects.
+#' @param values object. The values to assign. Can be a single object or a list of objects.
 #' @export
-`%a-%` <- function(vars, value) {
-  vars <- lapply(substitute(vars), deparse)[-1]
-  for (i in seq_along(vars)) {
-    assign(vars[[i]], value[[i]], envir = parent.frame(3))
+`%a-%` <- function(vars, values) {
+  vars <- substitute(vars)
+  if (length(vars) > 1) {
+    vars <- lapply(vars, deparse)[-1]
+    stopifnot(length(vars) == length(values))
+    for (i in seq_along(vars)) {
+      assign(vars[[i]], values[[i]], envir = parent.frame(5))
+    }
+  } else {
+    assign(deparse(vars), values, envir = parent.frame(1))
   }
 }

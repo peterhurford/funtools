@@ -1,0 +1,57 @@
+context("functionals")
+
+test_that("map maps", {
+  expect_equal(seq(10) %/>% inc, as.list(seq(2, 11)))
+})
+
+test_that("vmap maps without turning into a list", {
+  expect_equal(seq(10) %v>% inc, seq(2, 11))
+})
+
+test_that("nmap maps over names", {
+  l <- list(a = 1, b = 2, c = 3)
+  expect_equal(nmap(l, toupper), list(A = 1, B = 2, C = 3))
+})
+
+test_that("innermap maps on the inner-list", {
+  l <- list(seq(3), seq(10, 13), seq(100, 103))
+  inc_l <- list(as.list(seq(2, 4)), as.list(seq(11, 14)), as.list(seq(101, 104)))
+  expect_equal(l %//>% inc, inc_l)
+})
+
+test_that("flatmap maps then flattens", {
+  l <- list(seq(3), seq(10, 13), seq(100, 103))
+  inc_l <- as.list(c(seq(2, 4), seq(11, 14), seq(101, 104)))
+  expect_equal(l %f/>% inc, inc_l)
+})
+
+test_that("reduce reduces", {
+  expect_equal(seq(10) %_>% `+`, 55)
+})
+
+test_that("filter filters", {
+  expect_equal(seq(10) %:>% is_even, c(2, 4, 6, 8, 10))
+})
+
+test_that("nfilter filters by name", {
+  l <- list(a = 1, A = 2, b = 3, B = 4)
+  expect_equal(nfilter(l, is_upper), list(A = 2, B = 4))
+})
+
+test_that("filtermap will filter and then map", {
+  # Increment all even numbers
+  expect_equal(seq(10) %:/>% list(is_even, inc), list(1, 3, 3, 5, 5, 7, 7, 9, 9, 11))
+})
+
+test_that("reducemap will reduce the inner lists", {
+  l <- list(seq(3), seq(10, 13), seq(100, 103))
+  expect_equal(l %_/>% fn(x, y, x + y), list(6, 46, 406))
+})
+
+test_that("find finds", {
+  expect_equal(find(seq(101, 110), is_even), 102)
+})
+
+test_that("position returns the position of a find", {
+  expect_equal(position(seq(101, 110), is_even), 2)
+})

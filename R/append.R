@@ -10,6 +10,6 @@
 #' @export
 `%<<%` <- function(xs, y) {
   result <- append(xs, y)
-  assign(deparse(substitute(xs)), result, envir = parent.frame(3))
+  assign(deparse(substitute(xs)), result, envir = parent.frame(1))
   result
 }

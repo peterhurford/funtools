@@ -1,6 +1,6 @@
 Package: funtools
 Title: Make R functions more fun
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: person("Peter", "Hurford", email = "peter@peterhurford.com", role = c("aut", "cre"))
 Description: Provide numerous extensions to R's functional programming.
 Depends:

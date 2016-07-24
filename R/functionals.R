@@ -1,9 +1,9 @@
 #' Iterate a function over a list.
-#' @param xs list. The list to iterate over.
-#' @param f function. The function to apply.
+#' @param X list. The list to iterate over.
+#' @param FUN function. The function to apply.
 #' @param ... list. Additional optional arguments to pass to lapply.
 #' @export
-map <- function(xs, f, ...) { lapply(xs, f, ...) }
+map <- lapply
 
 #' Iterate a function over each sublist in a list of lists.
 #' @param xs list. The list-of-lists to iterate over.
@@ -16,7 +16,7 @@ innermap <- function(xs, f, ...) { lapply(xs, function(sxs) { lapply(sxs, f, ...
 #' @param xs list. The list to iterate over.
 #' @param f function. The function to apply.
 #' @export
-vmap <- function(xs, f) { lapply(xs, function(x) { f(unlist(x)) }) }
+vmap <- function(xs, f, ...) { unlist(lapply(unlist(xs), f, ...)) }
 
 #' Iterate a function over the names of a list.
 #' @param xs list. The list to iterate over.
@@ -79,7 +79,7 @@ position <- function(xs, f) { Position(f, xs) }
 #' @export
 `%//>%` <- function(lhs, rhs) {
   if (is.list(rhs)) {
-    do.call(innermap, c(list(lhs), rhs))
+    do.call(innermap, c(xs = list(lhs), f = rhs[[1]], rhs[-1]))
   } else {
     lhs %>% innermap(rhs)
   }
@@ -108,7 +108,7 @@ position <- function(xs, f) { Position(f, xs) }
 #' @param lhs list. The left-hand side list to unlist and apply.
 #' @param rhs function. The right-hand side vectorized function to apply to the unlisted vector. 
 #' @export
-`%v>%` <- function(lhs, rhs) { unlist(lhs) %>% rhs }
+`%v>%` <- function(lhs, rhs) { vmap(lhs, rhs) }
 
 #' Apply a map and then flatten the result.
 #' @param xs list. The list to map over.

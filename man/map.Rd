@@ -4,12 +4,12 @@
 \alias{map}
 \title{Iterate a function over a list.}
 \usage{
-map(xs, f, ...)
+map(X, FUN, ...)
 }
 \arguments{
-\item{xs}{list. The list to iterate over.}
+\item{X}{list. The list to iterate over.}
 
-\item{f}{function. The function to apply.}
+\item{FUN}{function. The function to apply.}
 
 \item{...}{list. Additional optional arguments to pass to lapply.}
 }

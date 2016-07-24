@@ -4,7 +4,7 @@
 \alias{vmap}
 \title{Iterate a function over the values of a list.}
 \usage{
-vmap(xs, f)
+vmap(xs, f, ...)
 }
 \arguments{
 \item{xs}{list. The list to iterate over.}

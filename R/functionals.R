@@ -1,9 +1,9 @@
 #' Iterate a function over a list.
-#' @param X list. The list to iterate over.
-#' @param FUN function. The function to apply.
+#' @param xs list. The list-of-lists to iterate over.
+#' @param f function. The function to apply.
 #' @param ... list. Additional optional arguments to pass to lapply.
 #' @export
-map <- lapply
+map <- function(xs, f, ...) { lapply(xs, f, ...) }
 
 #' Iterate a function over each sublist in a list of lists.
 #' @param xs list. The list-of-lists to iterate over.
@@ -66,7 +66,7 @@ position <- function(xs, f) { Position(f, xs) }
 #' @export
 `%/>%` <- function(lhs, rhs) {
   if (is.list(rhs)) {
-    do.call(map, c(list(lhs), rhs))
+    do.call(map, c(xs = list(lhs), f = rhs[[1]], rhs[-1]))
   } else {
     lhs %>% map(rhs)
   }

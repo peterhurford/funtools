@@ -7,7 +7,7 @@
 map(xs, f, ...)
 }
 \arguments{
-\item{xs}{list. The list to iterate over.}
+\item{xs}{list. The list-of-lists to iterate over.}
 
 \item{f}{function. The function to apply.}
 

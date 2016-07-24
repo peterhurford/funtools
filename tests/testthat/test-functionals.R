@@ -1,7 +1,14 @@
 context("functionals")
 
-test_that("map maps", {
-  expect_equal(seq(10) %/>% inc, as.list(seq(2, 11)))
+describe("map", {
+  test_that("map maps", {
+    expect_equal(seq(10) %/>% inc, as.list(seq(2, 11)))
+  })
+
+  test_that("map can feed in additional parameters", {
+    add <- function(x, y) { x + y }
+    expect_equal(seq(10) %/>% list(add, x = 2), as.list(seq(3, 12)))
+  })
 })
 
 test_that("vmap maps without turning into a list", {
@@ -13,10 +20,19 @@ test_that("nmap maps over names", {
   expect_equal(nmap(l, toupper), list(A = 1, B = 2, C = 3))
 })
 
-test_that("innermap maps on the inner-list", {
-  l <- list(seq(3), seq(10, 13), seq(100, 103))
-  inc_l <- list(as.list(seq(2, 4)), as.list(seq(11, 14)), as.list(seq(101, 104)))
-  expect_equal(l %//>% inc, inc_l)
+describe("innermap", {
+  test_that("innermap maps on the inner-list", {
+    l <- list(seq(3), seq(10, 13), seq(100, 103))
+    inc_l <- list(as.list(seq(2, 4)), as.list(seq(11, 14)), as.list(seq(101, 104)))
+    expect_equal(l %//>% inc, inc_l)
+  })
+
+  test_that("innermap can feed in additional parameters", {
+    add <- function(x, y) { x + y }
+    l <- list(seq(3), seq(10, 13), seq(100, 103))
+    inc_l <- list(as.list(seq(3, 5)), as.list(seq(12, 15)), as.list(seq(102, 105)))
+    expect_equal(l %//>% list(add, x = 2), inc_l)
+  })
 })
 
 test_that("flatmap maps then flattens", {
@@ -25,8 +41,14 @@ test_that("flatmap maps then flattens", {
   expect_equal(l %f/>% inc, inc_l)
 })
 
-test_that("reduce reduces", {
-  expect_equal(seq(10) %_>% `+`, 55)
+describe("reduce", {
+  test_that("reduce reduces", {
+    expect_equal(seq(10) %_>% `+`, 55)
+  })
+
+  test_that("reduce can pass in an initial value", {
+    expect_equal(list(fn(x, x + 2), fn(x, x * 2)) %_>% list(fn(x, f, f(x)), 3), 10)
+  })
 })
 
 test_that("filter filters", {

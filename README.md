@@ -1,4 +1,4 @@
-## Funtools
+## Funtools <a href="https://travis-ci.org/peterhurford/funtools"><img src="https://img.shields.io/travis/peterhurford/funtools.svg"></a> <a href="https://codecov.io/github/peterhurford/funtools"><img src="https://img.shields.io/codecov/c/github/peterhurford/funtools.svg"></a> <a href="https://github.com/peterhurford/funtools/tags"><img src="https://img.shields.io/github/tag/peterhurford/funtools.svg"></a>
 
 **Make R functions more fun!**
 

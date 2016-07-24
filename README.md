@@ -279,19 +279,19 @@ fib %>% take_while(fn(x, x <= num("4M"))) %:>% is_even %_>% `+`
 **Euler #3**
 
 ```R
-#TODO: Redo
 roots <- . %>% sqrt %>% floor %>% seq(2, .)
-isPrime <- function(n) { n %>% dec %>% roots %:>% fn(x, div(x, n)) %>% null }
-largest_prime_factor <- function(n) { roots(n-1) %:>% (fn(x, div(x, n)) %&.% isPrime) %v>% max }
+#TOOD: Why can't `fn` be used here? https://github.com/peterhurford/funtools/issues/5
+is_prime <- function(n) { n %>% dec %>% roots %>% find(function(x) { div(n, x) }) %>% is.null }
+largest_prime_factor <- function(n) { n %>% dec %>% roots %>% sort(., decreasing = TRUE) %:>% (function(x) { div(n, x) }) %>% find(is_prime) }
 largest_prime_factor(600851475143)
 ```
 
 **Euler #4**
 
 ```R
-is_palindrome <- . %>% as.character %>% lsplit %>% fn(x, rev(x) == x) %>% all
-#TODO: Add self_map
-self_map(seq(100, 999), `*`) %>% unique %:>% is_palindrome %>% max
+is_palindrome <- . %>% as.character %>% lsplit %>% { rev(.) == . } %>% all
+((seq(100, 999) %v>% fn(x, rep(x, 899))) * rep(seq(100, 999), 899)) %>% unique %:>% is_palindrome %
+>% max
 ```
 
 **Replace infinite values with NA**
@@ -304,20 +304,17 @@ c(0, 1, 2, Inf, 3) %:/>% list(is.infinite, fn(x, NA))
 **Reinventing `which`**
 
 ```R
-library(funtools)
-library(dplyr)
 which_ <- function(bools) {
-  bools %+/>% seq_along %:/>% first %/>% nth(2)
+  bools %+/>% seq_along %:>% fn(x, x[[1]]) %/>% fn(x, x[[2]]) %>% unlist
 }
 
 > which(is_even(seq(10, 20)))
 [1]  1  3  5  7  9 11
 > which_(is_even(seq(10, 20)))
-#TODO: FIX
-Error in xs[vmap(xs, f)] : invalid subscript type 'list'
+[1]  1  3  5  7  9 11
 ```
 
-** Formatting a string to have line wrapping **
+**Formatting a string to have line wrapping**
 ```R
 ## Print out str so that each line is max 13 characters and no words are broken.
 str <- "Four score and seven years ago our fathers brought forth upon this continent a new nation conceived in liberty and dedicated to the proposition that all men are created equal"

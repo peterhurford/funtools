@@ -52,7 +52,7 @@ filter.default <- function(xs, f) { Filter(f, xs) }
 #' @param xs list. The list to filter.
 #' @param f function. The predicate function to apply. It should return TRUE or FALSE for each name element of the list.
 #' @export
-nfilter <- function(xs, f) { xs[f(names(xs))] }
+nfilter <- function(xs, f) { xs[unlist(lapply(names(xs), f))] }
 
 #' Returns the first value of a list that meets a predicate.
 #' @param xs list. The list to search.

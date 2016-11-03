@@ -1,4 +1,9 @@
-#### v0.0.0,9002
+#### v0.0.0.9003
+
+* Added `innerinnermap` (`%///>%`) for working with triply nested lists.
+* Added `unnest` for turning list of lists into lists.
+
+#### v0.0.0.9002
 
 * Export `lsplit` and `wsplit`.
 

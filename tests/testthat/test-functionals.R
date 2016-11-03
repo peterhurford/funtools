@@ -35,6 +35,18 @@ describe("innermap", {
   })
 })
 
+describe("innerinnermap", {
+    l <- list(list(seq(3), seq(10, 13), seq(100, 103)),
+         list(seq(1000, 1003), seq(10000, 10003), seq(100000, 100003)))
+  inc_l <- list(list(as.list(seq(2, 4)),
+             as.list(seq(11, 14)),
+             as.list(seq(101, 104))),
+           list(as.list(seq(1001, 1004)),
+             as.list(seq(10001, 10004)),
+             as.list(seq(100001, 100004))))
+  expect_equal(l %///>% inc, inc_l)
+})
+
 test_that("flatmap maps then flattens", {
   l <- list(seq(3), seq(10, 13), seq(100, 103))
   inc_l <- as.list(c(seq(2, 4), seq(11, 14), seq(101, 104)))

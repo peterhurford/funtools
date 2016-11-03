@@ -17,7 +17,11 @@ innermap <- function(xs, f, ...) { lapply(xs, function(sxs) { lapply(sxs, f, ...
 #' @param f function. The function to apply.
 #' @param ... list. Additional optional arguments to pass to lapply.
 #' @export
-innerinnermap <- function(xs, f, ...) { lapply(xs, function(sxs) { lapply(sxs, function(ssxs) { lapply(ssxs, f, ...) }) }) }
+innerinnermap <- function(xs, f, ...) {
+  lapply(xs, function(sxs) {
+    lapply(sxs, function(ssxs) { lapply(ssxs, f, ...) })
+  })
+}
 
 #' Iterate a function over the values of a list.
 #' @param xs list. The list to iterate over.

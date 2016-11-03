@@ -2,6 +2,8 @@
 
 * Added `innerinnermap` (`%///>%`) for working with triply nested lists.
 * Added `unnest` for turning list of lists into lists.
+* Bugfixes for `nfilter`.
+* Bugfixes for `%v>%`.
 
 #### v0.0.0.9002
 

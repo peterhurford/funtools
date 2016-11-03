@@ -12,6 +12,13 @@ map <- function(xs, f, ...) { lapply(xs, f, ...) }
 #' @export
 innermap <- function(xs, f, ...) { lapply(xs, function(sxs) { lapply(sxs, f, ...) }) }
 
+#' Iterate a function over each subsublist in a list of list of lists. Recursion!
+#' @param xs list. The list-of-lists-of-lists to iterate over.
+#' @param f function. The function to apply.
+#' @param ... list. Additional optional arguments to pass to lapply.
+#' @export
+innerinnermap <- function(xs, f, ...) { lapply(xs, function(sxs) { lapply(sxs, function(ssxs) { lapply(ssxs, f, ...) }) }) }
+
 #' Iterate a function over the values of a list.
 #' @param xs list. The list to iterate over.
 #' @param f function. The function to apply.
@@ -45,7 +52,7 @@ filter.default <- function(xs, f) { Filter(f, xs) }
 #' @param xs list. The list to filter.
 #' @param f function. The predicate function to apply. It should return TRUE or FALSE for each name element of the list.
 #' @export
-nfilter <- function(xs, f) { xs[Filter(f, names(xs))] }
+nfilter <- function(xs, f) { xs[f(names(xs))] }
 
 #' Returns the first value of a list that meets a predicate.
 #' @param xs list. The list to search.
@@ -85,6 +92,19 @@ position <- function(xs, f) { Position(f, xs) }
   }
 }
 
+#' Infix operator for innerinnermap.
+#' @param lhs list. The list of lists top map.
+#' @param rhs function. The function to map with.
+#' @import magrittr
+#' @export
+`%///>%` <- function(lhs, rhs) {
+  if (is.list(rhs)) {
+    do.call(innerinnermap, c(xs = list(lhs), f = rhs[[1]], rhs[-1]))
+  } else {
+    lhs %>% innerinnermap(rhs)
+  }
+}
+
 #' Infix operator for filter.
 #' @param lhs list. The list to filter.
 #' @param rhs function. The function to filter with.
@@ -108,7 +128,7 @@ position <- function(xs, f) { Position(f, xs) }
 #' @param lhs list. The left-hand side list to unlist and apply.
 #' @param rhs function. The right-hand side vectorized function to apply to the unlisted vector. 
 #' @export
-`%v>%` <- function(lhs, rhs) { vmap(lhs, rhs) }
+`%v>%` <- function(lhs, rhs) { unlist(lapply(unlist(lhs), rhs)) }
 
 #' Apply a map and then flatten the result.
 #' @param xs list. The list to map over.
@@ -153,3 +173,9 @@ reducemap <- function(xs, f) { map(xs, function(x) { reduce(x, f) }) }
 #' @param rhs function. The function to reduce with.
 #' @export
 `%_/>%` <- function(lhs, rhs) { lhs %>% reducemap(rhs) }
+
+
+#' Turn a list of lists into a list.
+#' @param xs list. The list of lists to unnest
+#' @export
+unnest <- function(xs) { as.list(unlist(xs)) }

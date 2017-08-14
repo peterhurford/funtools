@@ -5,6 +5,7 @@ dist: trusty
 r: release
 r_binary_packages:
     - devtools
+    - dplyr
 r_github_packages:
     - klutometis/roxygen
     - r-lib/rcmdcheck

@@ -139,11 +139,13 @@ position <- function(xs, f) { Position(f, xs) }
   }
 }
 
-#' Infix operator for unlisting a list prior to mapping with a vectorized function.
+#' Infix operator for unlisting a list prior to applying a vectorized function.
 #' @param lhs list. The left-hand side list to unlist and apply.
 #' @param rhs function. The right-hand side vectorized function to apply to the unlisted vector. 
 #' @export
-`%v>%` <- function(lhs, rhs) { unlist(lapply(unlist(lhs), rhs)) }
+`%v>%` <- function(lhs, rhs) {
+  lhs %>% unlist %>% unname %>% rhs
+}
 
 #' Apply a map and then flatten the result.
 #' @param xs list. The list to map over.

@@ -1,6 +1,7 @@
 #### v0.0.0.9004
 
 * Fixes dplyr support in `filter`.
+* Fixes behavior of `%v>%`.
 
 #### v0.0.0.9003
 

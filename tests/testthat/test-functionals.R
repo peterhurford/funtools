@@ -15,6 +15,11 @@ test_that("vmap maps without turning into a list", {
   expect_equal(seq(10) %v>% inc, seq(2, 11))
 })
 
+test_that("vmap gets a column from a dataframe", {
+  expect_equal(iris %>% dplyr::select(Species) %v>% unique %>% sort,
+               iris$Species %>% unique %>% sort)
+})
+
 test_that("nmap maps over names", {
   l <- list(a = 1, b = 2, c = 3)
   expect_equal(nmap(l, toupper), list(A = 1, B = 2, C = 3))

@@ -67,6 +67,11 @@ test_that("filter filters", {
   expect_equal(seq(10) %:>% is_even, c(2, 4, 6, 8, 10))
 })
 
+test_that("filter has dplyr support", {
+  expect_is(filter(seq(10), is_even), "integer")
+  expect_is(filter(iris, Petal.Width > 2), "data.frame")
+})
+
 test_that("nfilter filters by name", {
   l <- list(a = 1, A = 2, b = 3, B = 4)
   expect_equal(nfilter(l, is_upper), list(A = 2, B = 4))

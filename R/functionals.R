@@ -53,7 +53,7 @@ reduce <- function(xs, f, init) { Reduce(f, xs, init) }
 #'    `dplyr::filter`.
 #' @export
 filter <- valfilter <- function(xs, f) {
-  if (is.data.frame(xs) && ("dplyr" %in% installed.packages()[,1])) {
+  if (is.data.frame(xs) && ("dplyr" %in% installed.packages()[, 1])) {
     return(dplyr::filter_(xs, .dots = substitute(f)))
   }
   Filter(f, xs)

@@ -1,4 +1,4 @@
-anguage: r
+language: r
 sudo: required
 cache: packages
 dist: trusty

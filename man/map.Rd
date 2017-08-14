@@ -16,4 +16,3 @@ map(xs, f, ...)
 \description{
 Iterate a function over a list.
 }
-

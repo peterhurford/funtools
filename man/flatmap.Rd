@@ -14,4 +14,3 @@ flatmap(xs, f)
 \description{
 Apply a map and then flatten the result.
 }
-

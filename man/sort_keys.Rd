@@ -12,4 +12,3 @@ sort_keys(xs)
 \description{
 Sort a list by the names of that list.
 }
-

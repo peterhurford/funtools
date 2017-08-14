@@ -12,4 +12,3 @@ unnamed(xs)
 \description{
 Determine whether a list is unnamed.
 }
-

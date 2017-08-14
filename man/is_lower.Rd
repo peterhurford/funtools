@@ -12,4 +12,3 @@ is_lower(x)
 \description{
 Determine whether a character is lowercase.
 }
-

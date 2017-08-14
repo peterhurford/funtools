@@ -16,4 +16,3 @@ reduce(xs, f, init)
 \description{
 Recursively recombine values of a list.
 }
-

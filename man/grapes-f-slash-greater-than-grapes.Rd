@@ -14,4 +14,3 @@ lhs \%f/>\% rhs
 \description{
 Infix operator for flatmap.
 }
-

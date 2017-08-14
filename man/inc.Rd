@@ -12,4 +12,3 @@ inc(x)
 \description{
 Increment a number by one.
 }
-

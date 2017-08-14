@@ -14,4 +14,3 @@ xs \%<\% x
 \description{
 Infix operator for appending to a list.
 }
-

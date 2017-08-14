@@ -14,4 +14,3 @@ nfilter(xs, f)
 \description{
 Return only the values of a list where the names of that list meet a certain predicate.
 }
-

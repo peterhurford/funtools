@@ -12,4 +12,5 @@ Imports:
     magrittr
 Suggests:
     testthat
+    dplyr
 RoxygenNote: 6.0.1

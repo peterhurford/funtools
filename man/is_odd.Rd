@@ -12,4 +12,3 @@ is_odd(x)
 \description{
 Determine whether a number is odd.
 }
-

@@ -16,4 +16,3 @@ innermap(xs, f, ...)
 \description{
 Iterate a function over each sublist in a list of lists.
 }
-

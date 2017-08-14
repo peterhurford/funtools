@@ -12,4 +12,3 @@ is_false(x)
 \description{
 Determine whether an object is FALSE.
 }
-

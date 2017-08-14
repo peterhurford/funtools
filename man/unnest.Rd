@@ -12,4 +12,3 @@ unnest(xs)
 \description{
 Turn a list of lists into a list.
 }
-

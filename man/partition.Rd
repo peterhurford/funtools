@@ -14,4 +14,3 @@ partition(xs, f)
 \description{
 Paritition a list into two lists based on the reuslts of a binary function.
 }
-

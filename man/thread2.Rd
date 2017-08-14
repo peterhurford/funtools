@@ -14,4 +14,3 @@ thread2(xs, fn)
 \description{
 Thread a function through a list, iterating on an element and the output of the prior thread.
 }
-

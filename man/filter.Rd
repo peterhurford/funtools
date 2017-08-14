@@ -3,11 +3,14 @@
 \name{filter}
 \alias{filter}
 \alias{filter.default}
+\alias{filter.data.frame}
 \title{Return only the values of a list that meet a certain predicate.}
 \usage{
 filter(xs, f)
 
 \method{filter}{default}(xs, f)
+
+\method{filter}{data.frame}(x, ...)
 }
 \arguments{
 \item{xs}{list. The list to filter.}
@@ -17,4 +20,3 @@ filter(xs, f)
 \description{
 Return only the values of a list that meet a certain predicate.
 }
-

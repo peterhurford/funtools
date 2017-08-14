@@ -16,4 +16,3 @@ symdiff(xs, ys)
 Symmetric difference
 Find all the elements that are not in both sets.
 }
-

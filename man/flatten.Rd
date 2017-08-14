@@ -12,4 +12,3 @@ flatten(xs)
 \description{
 Take a list of lists and return a list.
 }
-

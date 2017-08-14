@@ -12,4 +12,3 @@ wsplit(str)
 \description{
 Split a string into a list by words.
 }
-

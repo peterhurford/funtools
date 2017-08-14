@@ -16,4 +16,3 @@ filtermap(xs, filter_f, map_f)
 \description{
 Filter a list to certain elements, apply a function to those elements, and return the initial list with the changed elements.
 }
-

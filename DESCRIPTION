@@ -1,6 +1,6 @@
 Package: funtools
 Title: Make R functions more fun
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: person("Peter", "Hurford", email = "peter@peterhurford.com", role = c("aut", "cre"))
 Description: Provide numerous extensions to R's functional programming.
 Depends:
@@ -12,4 +12,4 @@ Imports:
     magrittr
 Suggests:
     testthat
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

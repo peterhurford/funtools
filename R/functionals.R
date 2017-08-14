@@ -53,6 +53,16 @@ filter <- valfilter <- function(xs, f) { UseMethod("filter") }
 #' @export
 filter.default <- function(xs, f) { Filter(f, xs) }
 
+#' @rdname filter
+#' @export
+filter.data.frame <- function(x, ...) {
+  if ("dplyr" %in% installed.packages()[,1]) {
+    dplyr::filter(x, ...)
+  } else {
+    filter.default(x, ...)
+  }
+}
+
 #' Return only the values of a list where the names of that list meet a certain predicate.
 #' @param xs list. The list to filter.
 #' @param f function. The predicate function to apply. It should return TRUE or FALSE for each name element of the list.

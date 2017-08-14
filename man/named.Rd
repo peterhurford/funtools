@@ -12,4 +12,3 @@ named(xs)
 \description{
 Determine whether a list is named.
 }
-

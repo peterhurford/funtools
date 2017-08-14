@@ -17,4 +17,3 @@ filter(xs, f)
 \description{
 Return only the values of a list that meet a certain predicate.
 }
-

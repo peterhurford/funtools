@@ -12,4 +12,3 @@ is_upper(x)
 \description{
 Determine whether a character is uppercase.
 }
-

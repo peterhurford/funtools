@@ -17,4 +17,3 @@ either x or y.
 \description{
 Compose on NA, NULL, or lenth-0 (empty) values.
 }
-

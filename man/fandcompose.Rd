@@ -17,4 +17,3 @@ TRUE or FALSE whether the results of both functions are TRUE.
 \description{
 Compose two binary functions using and.
 }
-

@@ -14,4 +14,3 @@ x \%===\% y
 \description{
 Determine whether two objects are identical.
 }
-

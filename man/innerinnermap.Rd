@@ -16,4 +16,3 @@ innerinnermap(xs, f, ...)
 \description{
 Iterate a function over each subsublist in a list of list of lists. Recursion!
 }
-

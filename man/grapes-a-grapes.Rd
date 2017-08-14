@@ -14,4 +14,3 @@ vars \%a-\% values
 \description{
 In-place assignment, allowing for multiple values.
 }
-

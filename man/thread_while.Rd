@@ -14,4 +14,3 @@ thread_while(xs, fn)
 \description{
 Continue appending to a list while the functional is true, then start appending to the next list until the input list is empty.
 }
-

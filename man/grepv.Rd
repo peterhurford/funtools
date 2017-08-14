@@ -16,4 +16,3 @@ grepv(haystack, needle, ...)
 \description{
 Find all the matches of a pattern within a string.
 }
-

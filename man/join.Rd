@@ -14,4 +14,3 @@ join(l, join = "")
 \description{
 Join a list of strings together into one string.
 }
-

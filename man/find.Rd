@@ -14,4 +14,3 @@ find(xs, f)
 \description{
 Returns the first value of a list that meets a predicate.
 }
-

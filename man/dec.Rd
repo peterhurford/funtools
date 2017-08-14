@@ -12,4 +12,3 @@ dec(x)
 \description{
 Decrement a number by one.
 }
-

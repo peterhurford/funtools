@@ -14,4 +14,3 @@ div(x, y)
 \description{
 Determine if a dividend is evenly divisible by a divisor.
 }
-

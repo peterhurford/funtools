@@ -14,4 +14,3 @@ x \%+=\% y
 \description{
 In-place addition
 }
-

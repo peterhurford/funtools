@@ -17,4 +17,3 @@ zip(xs, ys)
 \description{
 Zip two lists together into tuple vectors.
 }
-

@@ -16,4 +16,3 @@ vmap(xs, f, ...)
 \description{
 Iterate a function over the values of a list.
 }
-

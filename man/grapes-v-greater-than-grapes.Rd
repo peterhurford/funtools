@@ -14,4 +14,3 @@ lhs \%v>\% rhs
 \description{
 Infix operator for unlisting a list prior to mapping with a vectorized function.
 }
-

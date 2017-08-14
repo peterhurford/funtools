@@ -17,4 +17,3 @@ a list where each element of the list of lists is reduced.
 \description{
 Reduce each sublist in a list of lists.
 }
-

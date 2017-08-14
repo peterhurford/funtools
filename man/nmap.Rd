@@ -14,4 +14,3 @@ nmap(xs, f)
 \description{
 Iterate a function over the names of a list.
 }
-

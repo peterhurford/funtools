@@ -2,16 +2,18 @@
 % Please edit documentation in R/functionals.R
 \name{nfilter}
 \alias{nfilter}
-\title{Return only the values of a list where the names of that list meet a certain predicate.}
+\title{Return only the values of a list where the names of that list meet a certain
+predicate.}
 \usage{
 nfilter(xs, f)
 }
 \arguments{
 \item{xs}{list. The list to filter.}
 
-\item{f}{function. The predicate function to apply. It should return TRUE or FALSE for each name element of the list.}
+\item{f}{function. The predicate function to apply. It should return TRUE or
+FALSE for each name element of the list.}
 }
 \description{
-Return only the values of a list where the names of that list meet a certain predicate.
+Return only the values of a list where the names of that list meet a certain
+predicate.
 }
-

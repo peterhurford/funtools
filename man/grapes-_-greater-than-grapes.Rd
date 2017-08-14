@@ -14,4 +14,3 @@ lhs \%_>\% rhs
 \description{
 Infix operator for reduce.
 }
-

@@ -2,19 +2,16 @@
 % Please edit documentation in R/functionals.R
 \name{filter}
 \alias{filter}
-\alias{filter.default}
 \title{Return only the values of a list that meet a certain predicate.}
 \usage{
 filter(xs, f)
-
-\method{filter}{default}(xs, f)
 }
 \arguments{
 \item{xs}{list. The list to filter.}
 
-\item{f}{function. The predicate function to apply. It should return TRUE or FALSE for each element of the list.}
+\item{f}{function. The predicate function to apply. It should return TRUE or
+FALSE for each element of the list.}
 }
 \description{
 Return only the values of a list that meet a certain predicate.
 }
-

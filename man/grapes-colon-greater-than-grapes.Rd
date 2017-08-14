@@ -14,4 +14,3 @@ lhs \%:>\% rhs
 \description{
 Infix operator for filter.
 }
-

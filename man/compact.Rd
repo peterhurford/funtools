@@ -12,4 +12,3 @@ compact(xs)
 \description{
 Remove all NAs and NULLs from a list.
 }
-

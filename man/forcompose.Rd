@@ -17,4 +17,3 @@ TRUE or FALSE whether the result of one or both functions is TRUE.
 \description{
 Compose two binary functions using or.
 }
-

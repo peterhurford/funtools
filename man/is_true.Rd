@@ -12,4 +12,3 @@ is_true(x)
 \description{
 Determine whether an object is TRUE.
 }
-

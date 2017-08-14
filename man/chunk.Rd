@@ -14,4 +14,3 @@ chunk(xs, n)
 \description{
 Chunk a list into multiple lists of a specific length.
 }
-

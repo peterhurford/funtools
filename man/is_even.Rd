@@ -12,4 +12,3 @@ is_even(x)
 \description{
 Determine whether a number is even.
 }
-

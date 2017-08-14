@@ -49,9 +49,15 @@ reduce <- function(xs, f, init) { Reduce(f, xs, init) }
 #' Return only the values of a list that meet a certain predicate.
 #' @param xs list. The list to filter.
 #' @param f function. The predicate function to apply. It should return TRUE or
-#'    FALSE for each element of the list.
+#'    FALSE for each element of the list. This can also be arguments to
+#'    `dplyr::filter`.
 #' @export
-filter <- valfilter <- function(xs, f) { Filter(f, xs) }
+filter <- valfilter <- function(xs, f) {
+  if (is.data.frame(xs) && ("dplyr" %in% installed.packages()[, 1])) {
+    return(dplyr::filter_(xs, .dots = substitute(f)))
+  }
+  Filter(f, xs)
+}
 
 #' Return only the values of a list where the names of that list meet a certain
 #' predicate.
@@ -134,14 +140,14 @@ position <- function(xs, f) { Position(f, xs) }
   }
 }
 
-#' Infix operator for unlisting a list prior to mapping with a vectorized
-#' function.
-#'
+#' Infix operator for unlisting a list prior to applying a vectorized function.
 #' @param lhs list. The left-hand side list to unlist and apply.
 #' @param rhs function. The right-hand side vectorized function to apply to the
 #'   unlisted vector.
 #' @export
-`%v>%` <- function(lhs, rhs) { unlist(lapply(unlist(lhs), rhs)) }
+`%v>%` <- function(lhs, rhs) {
+  lhs %>% unlist %>% unname %>% rhs
+}
 
 #' Apply a map and then flatten the result.
 #' @param xs list. The list to map over.

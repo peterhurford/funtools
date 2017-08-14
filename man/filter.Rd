@@ -10,7 +10,8 @@ filter(xs, f)
 \item{xs}{list. The list to filter.}
 
 \item{f}{function. The predicate function to apply. It should return TRUE or
-FALSE for each element of the list.}
+FALSE for each element of the list. This can also be arguments to
+`dplyr::filter`.}
 }
 \description{
 Return only the values of a list that meet a certain predicate.

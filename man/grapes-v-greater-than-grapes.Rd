@@ -2,8 +2,7 @@
 % Please edit documentation in R/functionals.R
 \name{\%v>\%}
 \alias{\%v>\%}
-\title{Infix operator for unlisting a list prior to mapping with a vectorized
-function.}
+\title{Infix operator for unlisting a list prior to applying a vectorized function.}
 \usage{
 lhs \%v>\% rhs
 }
@@ -14,6 +13,5 @@ lhs \%v>\% rhs
 unlisted vector.}
 }
 \description{
-Infix operator for unlisting a list prior to mapping with a vectorized
-function.
+Infix operator for unlisting a list prior to applying a vectorized function.
 }

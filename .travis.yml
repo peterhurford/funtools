@@ -3,13 +3,16 @@ sudo: required
 cache: packages
 dist: trusty
 r: release
+r_binary_packages:
+    - devtools
+    - dplyr
 r_github_packages:
     - klutometis/roxygen
-    - MangoTheCat/rcmdcheck
+    - r-lib/rcmdcheck
     - jimhester/lintr
     - jimhester/covr
 script:
-  - R -e 'r <- rcmdcheck::rcmdcheck(".", args = c("--no-manual")); l <- lintr::lint_package("."); print(l); quit(save = "no", status = if (length(c(r$errors, r$warnings, l)) > 0) { 1 } else { 0 }, runLast = FALSE)'
+  - R -e 'r <- rcmdcheck::rcmdcheck(".", args = c("--no-manual")); l <- lintr::lint_package("."); print(l); devtools::test(); quit(save = "no", status = if (length(c(r$errors, r$warnings, l)) > 0) { 1 } else { 0 }, runLast = FALSE)'
 after_success:
   - R -e 'library(covr); coveralls()'
 env:

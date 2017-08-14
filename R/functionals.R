@@ -10,7 +10,9 @@ map <- function(xs, f, ...) { lapply(xs, f, ...) }
 #' @param f function. The function to apply.
 #' @param ... list. Additional optional arguments to pass to lapply.
 #' @export
-innermap <- function(xs, f, ...) { lapply(xs, function(sxs) { lapply(sxs, f, ...) }) }
+innermap <- function(xs, f, ...) {
+  lapply(xs, function(sxs) { lapply(sxs, f, ...) })
+}
 
 #' Iterate a function over each subsublist in a list of list of lists. Recursion!
 #' @param xs list. The list-of-lists-of-lists to iterate over.
@@ -38,46 +40,45 @@ nmap <- function(xs, f) { setNames(xs, lapply(names(xs), f)) }
 
 #' Recursively recombine values of a list.
 #' @param xs list. The list to reduce.
-#' @param f function. The reducing function to apply, taking two values and producing one value.
+#' @param f function. The reducing function to apply, taking two values and
+#'    producing one value.
 #' @param init object. An optional initialization value to start reducing.
 #' @export
 reduce <- function(xs, f, init) { Reduce(f, xs, init) }
 
 #' Return only the values of a list that meet a certain predicate.
 #' @param xs list. The list to filter.
-#' @param f function. The predicate function to apply. It should return TRUE or FALSE for each element of the list.
+#' @param f function. The predicate function to apply. It should return TRUE or
+#'    FALSE for each element of the list. This can also be arguments to
+#'    `dplyr::filter`.
 #' @export
-filter <- valfilter <- function(xs, f) { UseMethod("filter") }
-
-#' @rdname filter
-#' @export
-filter.default <- function(xs, f) { Filter(f, xs) }
-
-#' @rdname filter
-#' @export
-filter.data.frame <- function(x, ...) {
-  if ("dplyr" %in% installed.packages()[,1]) {
-    dplyr::filter(x, ...)
-  } else {
-    filter.default(x, ...)
+filter <- valfilter <- function(xs, f) {
+  if (is.data.frame(xs) && ("dplyr" %in% installed.packages()[,1])) {
+    return(dplyr::filter_(xs, .dots = substitute(f)))
   }
+  Filter(f, xs)
 }
 
-#' Return only the values of a list where the names of that list meet a certain predicate.
+#' Return only the values of a list where the names of that list meet a certain
+#' predicate.
+#'
 #' @param xs list. The list to filter.
-#' @param f function. The predicate function to apply. It should return TRUE or FALSE for each name element of the list.
+#' @param f function. The predicate function to apply. It should return TRUE or
+#'    FALSE for each name element of the list.
 #' @export
 nfilter <- function(xs, f) { xs[unlist(lapply(names(xs), f))] }
 
 #' Returns the first value of a list that meets a predicate.
 #' @param xs list. The list to search.
-#' @param f function. The predicate function to apply. It should return TRUE or FALSE for each name element of the list.
+#' @param f function. The predicate function to apply. It should return TRUE or
+#'   FALSE for each name element of the list.
 #' @export
 find <- function(xs, f) { Find(f, xs) }
 
 #' Returns the position of the first value of a list that meets a predicate.
 #' @param xs list. The list to search.
-#' @param f function. The predicate function to apply. It should return TRUE or FALSE for each name element of the list.
+#' @param f function. The predicate function to apply. It should return TRUE or
+#'   FALSE for each name element of the list.
 #' @export
 position <- function(xs, f) { Position(f, xs) }
 
@@ -141,7 +142,8 @@ position <- function(xs, f) { Position(f, xs) }
 
 #' Infix operator for unlisting a list prior to applying a vectorized function.
 #' @param lhs list. The left-hand side list to unlist and apply.
-#' @param rhs function. The right-hand side vectorized function to apply to the unlisted vector. 
+#' @param rhs function. The right-hand side vectorized function to apply to the
+#'   unlisted vector.
 #' @export
 `%v>%` <- function(lhs, rhs) {
   lhs %>% unlist %>% unname %>% rhs
@@ -161,7 +163,9 @@ flatmap <- function(xs, f) { map(xs, f) %>% flatten }
 #' @export
 `%f/>%` <- function(lhs, rhs) { lhs %>% flatmap(rhs) }
 
-#' Filter a list to certain elements, apply a function to those elements, and return the initial list with the changed elements.
+#' Filter a list to certain elements, apply a function to those elements, and
+#' return the initial list with the changed elements.
+#'
 #' @param xs list. The list to iterate over.
 #' @param filter_f function. The predicate function to filter the list.
 #' @param map_f function. The function to apply to each element of the filter.
@@ -174,7 +178,8 @@ filtermap <- function(xs, filter_f, map_f) {
 
 #' Infix operator for filtermap
 #' @param lhs list. The list to iterate over.
-#' @param rhs list. A length-2 list of functions with teh first element being the filtering function and the second element being the mapping function.
+#' @param rhs list. A length-2 list of functions with teh first element being
+#'   the filtering function and the second element being the mapping function.
 #' @export
 `%:/>%` <- function(lhs, rhs) { filtermap(lhs, rhs[[1]], rhs[[2]]) }
 

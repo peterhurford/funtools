@@ -1,6 +1,9 @@
-#' Thread a function through a list, iterating on an element and the previous element.
+#' Thread a function through a list, iterating on an element and the previous
+#' element.
+#'
 #' @param xs list. The list to iterate over.
-#' @param fn function. A function that takes two arguments -- the previous position and the current position -- and returns one element back.
+#' @param fn function. A function that takes two arguments -- the previous
+#'   position and the current position -- and returns one element back.
 #' @export
 thread <- function(xs, fn) {
   out_list <- list(xs[[1]])
@@ -10,9 +13,12 @@ thread <- function(xs, fn) {
   out_list
 }
 
-#' Thread a function through a list, iterating on an element and the output of the prior thread.
+#' Thread a function through a list, iterating on an element and the output of
+#' the prior thread.
+#'
 #' @param xs list. The list to iterate over.
-#' @param fn function. A function that takes two arguments -- the previous position and the current position -- and returns one element back.
+#' @param fn function. A function that takes two arguments -- the previous
+#'   position and the current position -- and returns one element back.
 #' @export
 thread2 <- function(xs, fn) {
   out_list <- list(xs[[1]])
@@ -23,7 +29,8 @@ thread2 <- function(xs, fn) {
 }
 
 
-#' Continue appending to a list while the functional is true, then start appending to the next list until the input list is empty.
+#' Continue appending to a list while the functional is true, then start
+#'   appending to the next list until the input list is empty.
 #' @param xs list. The input list to thread.
 #' @param fn function. The function to check.
 #' @export

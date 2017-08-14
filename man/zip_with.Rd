@@ -14,7 +14,8 @@ xs \%+/>\% f
 
 \item{ys}{list. Antoher list to zip.}
 
-\item{f}{function. A funciton that should take two arguments, iterating over each element of both lists.}
+\item{f}{function. A funciton that should take two arguments, iterating over
+each element of both lists.}
 }
 \description{
 Zip two lists together by a specific function.

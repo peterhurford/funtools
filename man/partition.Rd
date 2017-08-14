@@ -9,7 +9,8 @@ partition(xs, f)
 \arguments{
 \item{xs}{list. The list to partition.}
 
-\item{f}{function. A function that returns TRUE or FALSE for each element into the list, determining which partition each element ends up in.}
+\item{f}{function. A function that returns TRUE or FALSE for each element
+into the list, determining which partition each element ends up in.}
 }
 \description{
 Paritition a list into two lists based on the reuslts of a binary function.

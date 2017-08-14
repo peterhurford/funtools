@@ -7,7 +7,8 @@
 fn(...)
 }
 \arguments{
-\item{...}{list. The last argument specifies the funciton body, the non-last arguments specify the formals.}
+\item{...}{list. The last argument specifies the funciton body, the non-last
+arguments specify the formals.}
 }
 \description{
 A shorthand for writing out R functions.

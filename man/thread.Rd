@@ -2,15 +2,18 @@
 % Please edit documentation in R/thread.R
 \name{thread}
 \alias{thread}
-\title{Thread a function through a list, iterating on an element and the previous element.}
+\title{Thread a function through a list, iterating on an element and the previous
+element.}
 \usage{
 thread(xs, fn)
 }
 \arguments{
 \item{xs}{list. The list to iterate over.}
 
-\item{fn}{function. A function that takes two arguments -- the previous position and the current position -- and returns one element back.}
+\item{fn}{function. A function that takes two arguments -- the previous
+position and the current position -- and returns one element back.}
 }
 \description{
-Thread a function through a list, iterating on an element and the previous element.
+Thread a function through a list, iterating on an element and the previous
+element.
 }

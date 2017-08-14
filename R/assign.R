@@ -39,8 +39,10 @@
 }
 
 #' In-place assignment, allowing for multiple values.
-#' @param vars character. The variable names to assign to. Can be a single string or list of strings.
-#' @param values object. The values to assign. Can be a single object or a list of objects.
+#' @param vars character. The variable names to assign to. Can be a single
+#'    string or list of strings.
+#' @param values object. The values to assign. Can be a single object or a
+#'    list of objects.
 #' @export
 `%a-%` <- function(vars, values) {
   vars <- substitute(vars)

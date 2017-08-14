@@ -11,6 +11,6 @@ LazyData: true
 Imports:
     magrittr
 Suggests:
-    testthat
+    testthat,
     dplyr
 RoxygenNote: 6.0.1

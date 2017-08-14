@@ -9,7 +9,8 @@ reduce(xs, f, init)
 \arguments{
 \item{xs}{list. The list to reduce.}
 
-\item{f}{function. The reducing function to apply, taking two values and producing one value.}
+\item{f}{function. The reducing function to apply, taking two values and
+producing one value.}
 
 \item{init}{object. An optional initialization value to start reducing.}
 }

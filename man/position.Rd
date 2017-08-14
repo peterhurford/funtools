@@ -9,7 +9,8 @@ position(xs, f)
 \arguments{
 \item{xs}{list. The list to search.}
 
-\item{f}{function. The predicate function to apply. It should return TRUE or FALSE for each name element of the list.}
+\item{f}{function. The predicate function to apply. It should return TRUE or
+FALSE for each name element of the list.}
 }
 \description{
 Returns the position of the first value of a list that meets a predicate.

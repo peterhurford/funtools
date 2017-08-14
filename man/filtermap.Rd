@@ -2,7 +2,8 @@
 % Please edit documentation in R/functionals.R
 \name{filtermap}
 \alias{filtermap}
-\title{Filter a list to certain elements, apply a function to those elements, and return the initial list with the changed elements.}
+\title{Filter a list to certain elements, apply a function to those elements, and
+return the initial list with the changed elements.}
 \usage{
 filtermap(xs, filter_f, map_f)
 }
@@ -14,5 +15,6 @@ filtermap(xs, filter_f, map_f)
 \item{map_f}{function. The function to apply to each element of the filter.}
 }
 \description{
-Filter a list to certain elements, apply a function to those elements, and return the initial list with the changed elements.
+Filter a list to certain elements, apply a function to those elements, and
+return the initial list with the changed elements.
 }

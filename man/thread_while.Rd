@@ -2,7 +2,8 @@
 % Please edit documentation in R/thread.R
 \name{thread_while}
 \alias{thread_while}
-\title{Continue appending to a list while the functional is true, then start appending to the next list until the input list is empty.}
+\title{Continue appending to a list while the functional is true, then start
+  appending to the next list until the input list is empty.}
 \usage{
 thread_while(xs, fn)
 }
@@ -12,5 +13,6 @@ thread_while(xs, fn)
 \item{fn}{function. The function to check.}
 }
 \description{
-Continue appending to a list while the functional is true, then start appending to the next list until the input list is empty.
+Continue appending to a list while the functional is true, then start
+  appending to the next list until the input list is empty.
 }

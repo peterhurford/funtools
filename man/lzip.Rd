@@ -3,7 +3,8 @@
 \name{lzip}
 \alias{lzip}
 \alias{\%+>\%}
-\title{Zip two lists together into a list of lists containing each element from both lists.}
+\title{Zip two lists together into a list of lists containing each element from
+  both lists.}
 \usage{
 lzip(xs, ys)
 
@@ -15,5 +16,6 @@ xs \%+>\% ys
 \item{ys}{list. Antoher list to zip.}
 }
 \description{
-Zip two lists together into a list of lists containing each element from both lists.
+Zip two lists together into a list of lists containing each element from
+  both lists.
 }

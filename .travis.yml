@@ -3,12 +3,11 @@ sudo: required
 cache: packages
 dist: trusty
 r: release
-r_binary_packages:
-    - covr
-    - roxygen
 r_github_packages:
+    - klutometis/roxygen
     - MangoTheCat/rcmdcheck
     - jimhester/lintr
+    - jimhester/covr
 script:
   - R -e 'r <- rcmdcheck::rcmdcheck(".", args = c("--no-manual")); l <- lintr::lint_package("."); print(l); quit(save = "no", status = if (length(c(r$errors, r$warnings, l)) > 1 || grepl("FAILED", r$output$stdout)) { 1 } else { 0 }, runLast = FALSE)'
 after_success:

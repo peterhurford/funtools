@@ -13,5 +13,6 @@ Imports:
 Suggests:
     spelling,
     testthat,
-    dplyr
+    dplyr,
+    rprojroot
 RoxygenNote: 6.0.1

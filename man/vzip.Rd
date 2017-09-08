@@ -12,7 +12,7 @@ zip(xs, ys)
 \arguments{
 \item{xs}{list. One list to zip.}
 
-\item{ys}{list. Antoher list to zip.}
+\item{ys}{list. Another list to zip.}
 }
 \description{
 Zip two lists together into tuple vectors.

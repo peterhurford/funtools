@@ -13,7 +13,7 @@ fandcompose <- `%&>%` <- function(f1, f2) { function(...) { f1(...) & f2(...) }}
 forcompose <- `%|>%` <- function(f1, f2) { function(...) { f1(...) | f2(...) }}
 
 
-#' Compose on NA, NULL, or lenth-0 (empty) values.
+#' Compose on NA, NULL, or length-0 (empty) values.
 #' @param x object. This object will be returned if non-NA, non-NULL, non-empty.
 #' @param y object. This object will be returned if x is NA, NULL, or empty.
 #' @return either x or y.

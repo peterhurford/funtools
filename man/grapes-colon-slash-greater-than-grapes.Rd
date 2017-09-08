@@ -9,7 +9,7 @@ lhs \%:/>\% rhs
 \arguments{
 \item{lhs}{list. The list to iterate over.}
 
-\item{rhs}{list. A length-2 list of functions with teh first element being
+\item{rhs}{list. A length-2 list of functions with the first element being
 the filtering function and the second element being the mapping function.}
 }
 \description{

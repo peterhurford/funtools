@@ -12,7 +12,7 @@ xs \%+/>\% f
 \arguments{
 \item{xs}{list. One list to zip.}
 
-\item{ys}{list. Antoher list to zip.}
+\item{ys}{list. Another list to zip.}
 
 \item{f}{function. A funciton that should take two arguments, iterating over
 each element of both lists.}

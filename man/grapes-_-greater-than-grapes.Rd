@@ -7,7 +7,7 @@
 lhs \%_>\% rhs
 }
 \arguments{
-\item{lhs}{list. The list to rduce.}
+\item{lhs}{list. The list to reduce.}
 
 \item{rhs}{function. The reducing function.}
 }

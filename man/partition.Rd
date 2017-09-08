@@ -2,7 +2,7 @@
 % Please edit documentation in R/chunkers.R
 \name{partition}
 \alias{partition}
-\title{Paritition a list into two lists based on the reuslts of a binary function.}
+\title{Partition a list into two lists based on the results of a binary function.}
 \usage{
 partition(xs, f)
 }
@@ -13,5 +13,5 @@ partition(xs, f)
 into the list, determining which partition each element ends up in.}
 }
 \description{
-Paritition a list into two lists based on the reuslts of a binary function.
+Partition a list into two lists based on the results of a binary function.
 }

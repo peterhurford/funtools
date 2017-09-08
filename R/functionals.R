@@ -129,7 +129,7 @@ position <- function(xs, f) { Position(f, xs) }
 `%:>%` <- function(lhs, rhs) { lhs %>% filter(rhs) }
 
 #' Infix operator for reduce.
-#' @param lhs list. The list to rduce.
+#' @param lhs list. The list to reduce.
 #' @param rhs function. The reducing function.
 #' @export
 `%_>%` <- function(lhs, rhs) {
@@ -178,7 +178,7 @@ filtermap <- function(xs, filter_f, map_f) {
 
 #' Infix operator for filtermap
 #' @param lhs list. The list to iterate over.
-#' @param rhs list. A length-2 list of functions with teh first element being
+#' @param rhs list. A length-2 list of functions with the first element being
 #'   the filtering function and the second element being the mapping function.
 #' @export
 `%:/>%` <- function(lhs, rhs) { filtermap(lhs, rhs[[1]], rhs[[2]]) }

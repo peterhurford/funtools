@@ -2,7 +2,7 @@
 % Please edit documentation in R/compose.R
 \name{\%or\%}
 \alias{\%or\%}
-\title{Compose on NA, NULL, or lenth-0 (empty) values.}
+\title{Compose on NA, NULL, or length-0 (empty) values.}
 \usage{
 x \%or\% y
 }
@@ -15,5 +15,5 @@ x \%or\% y
 either x or y.
 }
 \description{
-Compose on NA, NULL, or lenth-0 (empty) values.
+Compose on NA, NULL, or length-0 (empty) values.
 }
